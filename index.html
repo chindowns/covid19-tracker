@@ -11,42 +11,44 @@
 </head>
 
 <body>
-    <header class="hero has-background-dark">
+    
+    <header class="hero is-12 has-background-dark">
         <div class="hero-body">
             <div class="columns is-mobile is-centered is-vcentered">
-                <img class="image is-64x64" src="./assets/images/logo-covid-project-1.png"><span class="title is-1 has-text-light is-marginless">Covid-19 Tracker</span><img class="image is-64x64" src="./assets/images/logo-covid-project-1.png">
+                <img class="image is-64x64" src="./assets/images/logo-covid-project-1.png"><span
+                    class="title is-1 has-text-light is-marginless has-text-centered">Covid-19 Tracker</span><img class="image is-64x64"
+                    src="./assets/images/logo-covid-project-1.png">
             </div>
         </div>
     </header>
 
-    <div class="columns is-mobile">
-        <div class="column is-8 has-text-centered has-background-white-ter is-ancestor" id="map-Id">
-            <div class="tile">
-                <figure class="image">
-                    <img src="https://i.redd.it/xgq5f87yva341.jpg">
-                </figure>
-            </div>
-        </div>
-        <div class="column has-text-centered has-background-white-ter is-ancestor">
-            <!-- <h2 class="title bd-notification" id="news-Id">News Column</h2> -->
-            <div class="tile">
-                <div class="select">
-                    <select>
-                        <option>Select dropdown</option>
-                        <option value="United States">United States</option>
-                        <option value="China">China</option>
-                        <option value="Italy">Italy</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Germany">German</option>
-                        <option value="France">France</option>
-                        <option value="Iran">Iran</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Switzerland">Switzerland</option>
-                        <option value="Belgium">Belgium</option>
-                    </select>
+    <div class="tile is-12 is-mobile is-ancestor is-marginless">
+        <div class="tile is-8 has-text-centered has-background-white-ter is-parent" id="map-Id">
+            <div class="tile is-child">
+                <div class="columns is-mobile is-centered is-vcentered">
+                    <img class="image is-32x32" src="./assets/images/logo-covid-project-1.png"><span
+                        class="title is-3 has-text-dark is-marginless">Impact</span><img class="image is-32x32"
+                        src="./assets/images/logo-covid-project-1.png">
                 </div>
                 <div class="tile">
+                    <figure class="image">
+                        <img src="https://i.redd.it/xgq5f87yva341.jpg">
+                    </figure>
+                </div>
             </div>
+        </div>
+        <div class="tile is-4 has-text-centered has-background-white-ter is-parent" id="news-Id">
+            <div class="tile is-child" id="center-head">
+                <div class="columns is-mobile is-centered is-vcentered">
+                    <img class="image is-32x32" src="./assets/images/logo-covid-project-1.png"><span
+                        class="title is-3 has-text-dark is-marginless">News</span><img class="image is-32x32"
+                        src="./assets/images/logo-covid-project-1.png">
+                </div>
+                <div class="tile box" id="news-box">
+                </div>
+            </div>
+
+
         </div>
     </div>
 
