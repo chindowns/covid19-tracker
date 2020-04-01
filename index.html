@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/bulma.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Covid-19</title>
 </head>
 
@@ -22,7 +24,7 @@
         </div>
     </header>
 
-    <div class="tile is-12 is-mobile is-ancestor is-marginless">
+    <main class="tile is-12 is-mobile is-ancestor is-marginless has has-background-white-ter">
         <div class="tile is-8 has-text-centered has-background-white-ter is-parent" id="map-Id">
             <div class="tile is-child">
                 <div class="columns is-mobile is-centered is-vcentered">
@@ -30,28 +32,30 @@
                         class="title is-3 has-text-dark is-marginless">Impact</span><img class="image is-32x32"
                         src="./assets/images/logo-covid-project-1.png">
                 </div>
-                <div class="tile">
+                <div class="tile" id="mapLeft">
                     <figure class="image">
                         <img src="https://i.redd.it/xgq5f87yva341.jpg">
                     </figure>
                 </div>
             </div>
         </div>
-        <div class="tile is-4 has-text-centered has-background-white-ter is-parent" id="news-Id">
+        <div class="tile is-4 has-text-centered has-background-white-ter is-parent is-vertical" id="news-Id">
             <div class="tile is-child" id="center-head">
                 <div class="columns is-mobile is-centered is-vcentered">
                     <img class="image is-32x32" src="./assets/images/logo-covid-project-1.png"><span
                         class="title is-3 has-text-dark is-marginless">News</span><img class="image is-32x32"
                         src="./assets/images/logo-covid-project-1.png">
                 </div>
-                <div class="tile box" id="news-box">
+                <div class="column is-vertical has-background-white-ter" id="news-box">
                 </div>
             </div>
 
 
         </div>
-    </div>
+    </main>
 
+
+    <script src="assets/js/newsajax.js"></script>
 
 </body>
 
