@@ -1,0 +1,46 @@
+#center-head {
+justify-content: center !important;
+}
+
+#height-500 {
+  height: 500px;
+}
+
+#header-Id {
+  width: 100%;
+}
+
+#news-Id {
+  padding-right: 0;
+  padding-left: 0;
+  border-left: 2px !important;
+  border-color: black;
+}
+
+#news-box {
+  height: 460px;
+  border-top: 20px;
+  border-bottom: 20px;
+}
+
+#news-hr {
+  margin: 0.5rem;
+}
+
+#map-Id {
+  padding-right: 0;
+  padding-left: 0;
+  border-right: 2px !important;
+  border-color: black;
+}
+
+#mapLeft {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#news-box {
+  text-align: left;
+  padding-right: 1rem;
+  overflow-y: auto;
+}
