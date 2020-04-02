@@ -79,3 +79,123 @@ var marker10 = L.marker([50.5039, 4.4699]).addTo(map); // Belgium
 var popup10;
 
 
+var circle = L.circle([37.786542, -122.386022], {
+    color: "red",
+    fillColor: "#f03",
+    fillOpacity: 0.5,
+    radius: 50.0
+}).addTo(map);   
+
+
+
+L.circle([44.50, -89.50], {radius: 200}).addTo(map); //Wisconsin, the USA
+
+
+L.circle([39.00, -80.50], {radius: 200}).addTo(map); //West Virginia, the US
+
+
+L.circle([44.0, -72.69], {radius: 200}).addTo(map); //Vermont, the USA
+
+
+
+L.circle([31.00, -100.00], {radius: 200}).addTo(map); //Texas, the USA
+
+
+L.circle([44.50, -100], {radius: 200}).addTo(map); //South Dakota, the US
+
+L.circle([41.70, -71.50], {radius: 200}).addTo(map); //Rhode Island, the US
+
+L.circle([44.00, -120.50], {radius: 200}).addTo(map); //Oregon, the US
+
+L.circle([43.00, -75.00], {radius: 200}).addTo(map); //New York, the US
+
+L.circle([44.00, -71.50], {radius: 200}).addTo(map);
+
+L.circle([41.50, -100.00], {radius: 200}).addTo(map);
+
+L.circle([38.50, -98.00], {radius: 200}).addTo(map);
+
+L.circle([33.00, -90.00], {radius: 200}).addTo(map);
+
+L.circle([40.00, -89.00], {radius: 200}).addTo(map);
+
+L.circle([39.00, -75.50], {radius: 200}).addTo(map);
+
+L.circle([41.59, -72.69], {radius: 200}).addTo(map);
+
+L.circle([34.79, -92.19], {radius: 200}).addTo(map);
+
+L.circle([40.27, -86.12], {radius: 200}).addTo(map);
+
+L.circle([38.57, -92.60], {radius: 200}).addTo(map);
+
+L.circle([27.99, -81.76], {radius: 200}).addTo(map);
+
+L.circle([39.87, -117.22], {radius: 200}).addTo(map);
+
+L.circle([45.36, -68.97], {radius: 200}).addTo(map);
+
+L.circle([44.18, -84.50], {radius: 200}).addTo(map);
+
+L.circle([33.24, -83.44], {radius: 200}).addTo(map);
+
+L.circle([19.74, -155.84], {radius: 200}).addTo(map);
+
+L.circle([66.16, -153.36], {radius: 200}).addTo(map);
+
+L.circle([35.86, -86.66], {radius: 200}).addTo(map);
+
+L.circle([37.92, -78.02], {radius: 200}).addTo(map);
+
+L.circle([39.83, -74.87], {radius: 200}).addTo(map);
+
+L.circle([37.83, -84.27], {radius: 200}).addTo(map);
+
+L.circle([47.65, -100.43], {radius: 200}).addTo(map);
+
+L.circle([46.39, -94.63], {radius: 200}).addTo(map);
+
+
+L.circle([36.08, -96.92], {radius: 200}).addTo(map);
+
+L.circle([46.96, -109.53], {radius: 200}).addTo(map);
+
+L.circle([47.75, -120.74], {radius: 200}).addTo(map);
+
+L.circle([39.41, -111.95], {radius: 200}).addTo(map);
+
+L.circle([39.11, -105.35], {radius: 200}).addTo(map);
+
+L.circle([40.36, -82.99], {radius: 200}).addTo(map);
+
+L.circle([32.31, -86.90], {radius: 200}).addTo(map);
+
+L.circle([42.03, -93.58], {radius: 200}).addTo(map);
+
+L.circle([34.30, -106.01], {radius: 200}).addTo(map);
+
+L.circle([33.83, -81.16], {radius: 200}).addTo(map);
+
+L.circle([41.20, -77.19], {radius: 200}).addTo(map);
+
+L.circle([34.04, -111.09], {radius: 200}).addTo(map);
+
+L.circle([39.04, -76.64], {radius: 200}).addTo(map);
+
+L.circle([42.40, -71.38], {radius: 200}).addTo(map);
+
+L.circle([36.77, -119.41], {radius: 200}).addTo(map);
+
+L.circle([44.06, -114.74], {radius: 200}).addTo(map);
+
+L.circle([43.07, -107.29], {radius: 200}).addTo(map);
+
+L.circle([35.78, -80.79], {radius: 200}).addTo(map);
+
+L.circle([30.39, -92.32], {radius: 200}).addTo(map);
+
+
+
+
+
+
