@@ -78,18 +78,21 @@ var dateFormat = function(){
     // Need to format this dateCntryTotal to be more legible    2020-03-31T00:00:00Z
 }
  
-function chartStateConfirmed(response) {
+function renderModals() {
+
+}
+
+var countsArr = [];
+var datesArr = [];
+function chartPrep(response) {
     // filtered data recieved by getStatesConfirmed
     var confCasesArr = response;
-    // console.log(confirmedCases);
+    console.log(response);
 
     // prep and aggregate dates
     // Prep the dates from the Confirmed Cases Array
     var day = 0;
     var count = 0;
-    var data = [];
-    var Labels = [];
-
     
     for (var i = 0; i < confCasesArr.length; i++) {
         // iterate through our loop
@@ -100,11 +103,11 @@ function chartStateConfirmed(response) {
         daySlice = confCasesArr[i].date.slice(0,10);
         // Before pushing data into the object chartData
         // Validate that the Array is at a new day and this is not the first iteration.
-        console.log(day +"   " + daySlice)
+        // console.log(day +"   " + daySlice)
         if (day !== daySlice && i > 0){
             //if charData[Labels] does exist push data ELSE create it
-            Labels.push(day);
-            data.push(count);
+            datesArr.push(day);
+            countsArr.push(count);
             day = 0;
             count = 0;
             console.log("this is push and clear" + day + " " + count);
@@ -112,60 +115,70 @@ function chartStateConfirmed(response) {
         }
         day = daySlice;
         count = count + confCasesArr[i].confCases;
-        console.log("aggregation " + day + " " + count);
+        // console.log("aggregation " + day + " " + count);
         
         }
-        console.log(data);
-        console.log(Labels);
-
+        console.log(countsArr);
+        console.log(datesArr);
+        renderStateChart();
     // console.log(confCasesArr)
-    
+}
+
+function renderStateChart(){
+
+    console.log("---- datesArr-----");
+    console.log(datesArr);
+    console.log("---- countsArr----");
+    console.log(countsArr);
+
+    // renders the chart onto the DOM
+    var ctx = document.getElementById('myChart');
+    var mapEl = document.getElementById('map');
+    mapEl.setAttribute("style", "display:none");
+    ctx.setAttribute("style", "display:block;");
+    var labelsArr = datesArr;
+    var dataArr = countsArr;
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labelsArr, 
+            datasets: [{
+                label: '# of Votes',
+                data: dataArr,
+                backgroundColor: [
+                    // 'rgba(255, 99, 132, 0.2)',
+                    // 'rgba(54, 162, 235, 0.2)',
+                    // 'rgba(255, 206, 86, 0.2)',
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(153, 102, 255, 0.2)',
+                    // 'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(54, 162, 235, 1)',
+                    // 'rgba(255, 206, 86, 1)',
+                    // 'rgba(75, 192, 192, 1)',
+                    // 'rgba(153, 102, 255, 1)',
+                    // 'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    console.log(myChart);
 }
 
 
-
-    // renders the chart onto the DOM
-    // var ctx = document.getElementById('myChart');
-    // var myChart = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: [ ], // This is the array to push each date.
-    //         datasets: [{
-    //             label: '# of Votes',
-    //             data: [12, 19, 3, 5, 2, 3],
-    //             backgroundColor: [
-    //                 'rgba(255, 99, 132, 0.2)',
-    //                 'rgba(54, 162, 235, 0.2)',
-    //                 'rgba(255, 206, 86, 0.2)',
-    //                 'rgba(75, 192, 192, 0.2)',
-    //                 'rgba(153, 102, 255, 0.2)',
-    //                 'rgba(255, 159, 64, 0.2)'
-    //             ],
-    //             borderColor: [
-    //                 'rgba(255, 99, 132, 1)',
-    //                 'rgba(54, 162, 235, 1)',
-    //                 'rgba(255, 206, 86, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(255, 159, 64, 1)'
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
-
-
-
-function getStateConfirmed() {
+function getStateInfo(st) {
     var queryUsaURL = "https://api.covid19api.com/country/us/status/confirmed";
     
     $.ajax({
@@ -326,8 +339,8 @@ function getStateConfirmed() {
         
         // console.log(statesListArr);
         // console.log(finalStats.CA);
-
-        chartStateConfirmed(finalStats.CA);
+        
+        chartPrep(finalStats.CA);
     
     });
 }
@@ -336,6 +349,4 @@ function getStateConfirmed() {
 // getConfirmedTotals("us");
 // getrecovCntryTotals("us");
 // getDeathTotals("us");
-getStateConfirmed();
-
-
+// getStateInfo();
