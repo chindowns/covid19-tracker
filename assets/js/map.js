@@ -25,7 +25,7 @@ function onClick(e) {
     //alert(this.key);
     country = (this.key) // or location or state
     getHealthNews(country)
-    var country = (this.key) // or location or state
+   
 
     console.log(country)
   
