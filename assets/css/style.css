@@ -48,6 +48,11 @@ justify-content: center !important;
 #map { 
   
   width:700px; height:480px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#myChart {
+  display: none;
 }
