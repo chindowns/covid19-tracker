@@ -12,6 +12,17 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <title>Covid-19</title>
 </head>
 
@@ -35,11 +46,11 @@
                         class="title is-3 has-text-dark is-marginless">Impact</span><img class="image is-32x32"
                         src="./assets/images/logo-covid-project-1.png">
                 </div>
-                <div class="tile" id="mapLeft">
+                <div class="tile" id="map">
                     <!-- <figure class="image">
                         <img src="https://i.redd.it/xgq5f87yva341.jpg">
                     </figure> -->
-                    <canvas id="myChart"></canvas>
+                    <!--<canvas id="myChart"></canvas>-->
                 </div>
             </div>
         </div>
@@ -100,6 +111,7 @@
 
 
     <script src="assets/js/newsajax.js"></script>
+    <script src="assets/js/map.js"></script>
 
 </body>
 

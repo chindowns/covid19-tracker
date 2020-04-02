@@ -44,3 +44,10 @@ justify-content: center !important;
   padding-right: 1rem;
   overflow-y: auto;
 }
+
+#map { 
+  
+  width:700px; height:480px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

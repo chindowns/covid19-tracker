@@ -15,7 +15,7 @@
   
     <style>
         body { margin:0; padding:0; }
-        #map {width:776; height:480; position: absolute; left: 100px; top: 200px; width: 776px; height: 480px;}
+        
       
            
     
@@ -30,7 +30,7 @@
     
     
     var accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
-    var map = L.map('map').setView([0,0], 5);
+    var map = L.map('map').setView([20,0], 2);
 
 // Add tiles from the Mapbox Static Tiles API
 // (https://docs.mapbox.com/api/maps/#static-tiles)
@@ -44,6 +44,12 @@ L.tileLayer(
 
 var marker1 = L.marker([39.0119, -98.4842]).addTo(map); // US
 var popup1;
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+map.on('click', onMapClick);
 
 var marker2 = L.marker([41.9028, 12.4964]).addTo(map); // Italy
 var popup2;
@@ -85,6 +91,21 @@ var circle = L.circle([37.786542, -122.386022], {
     fillOpacity: 0.5,
     radius: 50.0
 }).addTo(map);   
+
+//marker.bindPopup("<b> country name </b><br> number of Covid19 cases.").openPopup();
+
+/* add listeners to those icons
+map.on('click', function(ev) {
+    //what we want to open from this click
+    in this case, we have assigned a value to each button that is the 2-letter ISO 3166 code of that code. Eg user clicks on a marker on the US, this should mean that:
+    
+    query.Param.country = $("#marker-id").val();
+    
+*/
+
+// this.getLatLng()
+
+
 
 
 
