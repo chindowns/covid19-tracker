@@ -79,11 +79,90 @@ var dateFormat = function(){
 }
  
 function chartStateConfirmed(response) {
-    var confirmedCases = response;
-    console.log(confirmedCases);
+    // filtered data recieved by getStatesConfirmed
+    var confCasesArr = response;
+    // console.log(confirmedCases);
+
+    // prep and aggregate dates
+    // Prep the dates from the Confirmed Cases Array
+    var day = 0;
+    var count = 0;
+    var Lables;
 
 
+    for (var i = 0; i < confCasesArr.length; i++) {
+        // iterate through our loop
+        //slice the date and add the cases to count
+        // if the next date mathes increase count by 1
+        // when the date if different push date, count to labels and data
+        var data;
+        var chartData = {
+            Lables: [],
+            lable: "# of Confirmed Cases",
+            data: []
+        };
+    
+        daySlice = confCasesArr[i].date.slice(0,10);
+        if (day !== daySlice && day !== 0){
+            chartData[Lables].push(day);
+            chartData[data].push(count);
+            day = 0;
+            count = 0;
+            console.log("this is push and clear" + day + " " + count);
+        }
+        day = daySlice;
+        count = count + confCasesArr[i].confCases;
+        console.log("aggregation " + day + " " + count);
+        console.log(data);
+        }
+
+
+    // console.log(confCasesArr)
+    
 }
+
+
+
+    // renders the chart onto the DOM
+    // var ctx = document.getElementById('myChart');
+    // var myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: [ ], // This is the array to push each date.
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: [12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255, 99, 132, 1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // });
+
+
 
 function getStateConfirmed() {
     var queryUsaURL = "https://api.covid19api.com/country/us/status/confirmed";
@@ -215,13 +294,13 @@ function getStateConfirmed() {
             if (stChk.indexOf(provinceArr[0]) !== -1) {
                 state = lookUp[provinceArr[0]];
                 if ( state === undefined) {console.log(provinceArr[0])}
-                console.log("province0 state lookup:  " + state);
+                // console.log("province0 state lookup:  " + state);
             
             }else {
                 if (province1 !== undefined && province1.length === 2) {
                     state = lookUp[province1];
                     if ( state === undefined) {console.log(provinceArr[1])}
-                    console.log("province1 (2d) state lookup:  " + state);
+                    // console.log("province1 (2d) state lookup:  " + state);
                 }
             }                
          
@@ -231,23 +310,23 @@ function getStateConfirmed() {
                     date: response[i].Date,
                     confCases: response[i].Cases
                 };
-                console.log("object of array state " + JSON.stringify(confirmed));
+                // console.log("object of array state " + JSON.stringify(confirmed));
                 finalStats[state].push(confirmed);
                 //push new obj (date and count)
             } else if (response[i].Date !== undefined) {
                 finalStats[state] = [{date:response[i].Date, confCases:response[i].Cases}] ;
             }
         }
-            console.log (finalStats);
+            // console.log (finalStats);
 
 
 
             // console.log(statesListArr);
         
         // console.log(statesListArr);
+        // console.log(finalStats.CA);
 
-
-        // chartStateConfirmed(response);
+        chartStateConfirmed(finalStats.CA);
     
     });
 }
