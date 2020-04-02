@@ -1,35 +1,4 @@
 
- 
- /*
- 
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
-
-    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
-    
-  
-    <style>
-        body { margin:0; padding:0; }
-        
-      
-           
-    
-        
-    </style>
-</head>
-<body>
-
-<div id='map'></div>
-
-*/
-    
-    
     var accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
     var map = L.map('map').setView([20,0], 2);
 
@@ -47,9 +16,13 @@ var marker1 = L.marker([39.0119, -98.4842]).addTo(map).on('mouseover', onClick);
 marker1.key = "us";
 var popup1;
 
+
 function onClick(e) {   
     //alert(this.key);
-    console.log(this.key)
+    var country = (this.key) // or location or state
+
+    console.log(country)
+  
     
 
 }
@@ -104,26 +77,7 @@ var circle1 = L.circle([37.786542, -122.386022], {
     radius: 50.0
 }).addTo(map);   
 
-//marker.bindPopup("<b> country name </b><br> number of Covid19 cases.").openPopup();
 
-/* add listeners to those icons
-map.on('click', function(ev) {
-    //what we want to open from this click
-    in this case, we have assigned a value to each button that is the 2-letter ISO 3166 code of that code. Eg user clicks on a marker on the US, this should mean that:
-    
-    query.Param.country = $("#marker-id").val();
-    
-*/
-
-// this.getLatLng()
-
-
-//function onMapClick(e) {
-    
-//alert("You clicked the map at " + this.key);
-//}
-
-//map.on('click', onMapClick);
 
 
 var circle2 = L.circle([44.50, -89.50], {radius: 200}).addTo(map).on('mouseover', onClick);;; //Wisconsin, the USA
@@ -324,3 +278,5 @@ circle50.key = "NC"
 var circle51 = L.circle([30.39, -92.32], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
 circle51.key = "LA"
+ 
+ 
