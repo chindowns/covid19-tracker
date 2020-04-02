@@ -1,3 +1,5 @@
+var country;
+    //var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
 
     
 
@@ -21,6 +23,8 @@ var popup1;
 
 function onClick(e) {   
     //alert(this.key);
+    country = (this.key) // or location or state
+    getHealthNews(country)
     var country = (this.key) // or location or state
 
     console.log(country)
@@ -28,6 +32,51 @@ function onClick(e) {
     
 
 }
+
+
+function getHealthNews() {
+    //healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
+    $.ajax({
+        url: "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        $("#news-box").empty();
+        var articles = response.articles
+        for (var i = 0; i < 10; i++) {
+            console.log(articles[i]);
+            var headline = articles[i].title
+            var link = articles[i].url
+            var author = articles[i].author
+            if (author !== null) {
+                console.log(author)
+            }
+            var pubSource = articles[i].source.name
+            var pubDate = articles[i].publishedAt
+            $("#news-box").append($articleList);
+            var $articleList = $("<ul>");
+            $articleList.addClass("list-group");
+            // Cerate list it
+            var $articleListItem = $("<li class='list-group-item articleHeadline'>");
+            // Append Title and url
+            $articleListItem.append("<h5><a href='" + link + "' target='_blank'>" + headline + "</a></h5>");
+            // Append article source
+            $articleListItem.append("<h5>Source: " + pubSource + "</h5>")
+            // If author exists, append to article list
+            if (author !== null) {
+                $articleListItem.append("<h5>Author: " + author + "</h5>");
+            }
+            // Append pubDatea to document if exists
+            $articleListItem.append("<h5>" + pubDate + "</h5>");
+            // Append hr to separate article data
+            $articleListItem.append("<br/>");
+            // Append the article
+            $articleList.append($articleListItem);
+        }
+
+    });
+}
+
 
 
 
@@ -172,6 +221,14 @@ var circle24 = L.circle([33.24, -83.44], {radius: 200}).addTo(map).on('mouseover
 circle24.key = "GA"
 
 
+var circle23 = L.circle([44.18, -84.50], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle23.key = "MI"
+
+var circle24 = L.circle([33.24, -83.44], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle24.key = "GA"
+
 var circle25 = L.circle([19.74, -155.84], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
 circle25.key = "HI"
@@ -179,7 +236,13 @@ circle25.key = "HI"
 var circle26 = L.circle([66.16, -153.36], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
 circle26.key = "AK"
+var circle25 = L.circle([19.74, -155.84], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
+circle25.key = "HI"
+
+var circle26 = L.circle([66.16, -153.36], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle26.key = "AK"
 
 var circle27 = L.circle([35.86, -86.66], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
@@ -280,8 +343,104 @@ circle50.key = "NC"
 var circle51 = L.circle([30.39, -92.32], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
 circle51.key = "LA"
+var circle27 = L.circle([35.86, -86.66], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
+circle27.key = "TN"
 
+var circle28 = L.circle([37.92, -78.02], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
+circle28.key = "VA"
+
+var circle29 = L.circle([39.83, -74.87], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle29.key = "NJ"
+
+var circle30 = L.circle([37.83, -84.27], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle30.key = "KY"
+
+var circle31 = L.circle([47.65, -100.43], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle31.key = "ND"
+
+var circle32 = L.circle([46.39, -94.63], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle32.key = "MN"
+
+var circle33 = L.circle([36.08, -96.92], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle33.key = "OK"
+
+var circle34 = L.circle([46.96, -109.53], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle34.key = "MT"
+
+var circle35 = L.circle([47.75, -120.74], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle35.key = "WA"
+
+var circle36 = L.circle([39.41, -111.95], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle36.key = "UT"
+
+var circle37 = L.circle([39.11, -105.35], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle37.key = "CO"
+
+var circle38 = L.circle([40.36, -82.99], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle38.key = "OH"
+
+var circle39 = L.circle([32.31, -86.90], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle39.key = "AL"
+
+var circle40 = L.circle([42.03, -93.58], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle40.key = "IA"
+
+var circle41 = L.circle([34.30, -106.01], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle41.key = "NM"
+
+var circle42 = L.circle([33.83, -81.16], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle42.key = "SC"
+
+var circle43 = L.circle([41.20, -77.19], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle43.key = "PA"
+
+var circle44 = L.circle([34.04, -111.09], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle44.key = "AZ"
+
+var circle45 = L.circle([39.04, -76.64], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle45.key = "MD"
+
+var circle46 = L.circle([42.40, -71.38], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle46.key = "MA"
+
+var circle47 = L.circle([36.77, -119.41], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle47.key = "CA"
+
+var circle48 = L.circle([44.06, -114.74], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle48.key = "ID"
+
+var circle49 = L.circle([43.07, -107.29], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle49.key = "WY"
+
+var circle50 = L.circle([35.78, -80.79], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle50.key = "NC"
+
+var circle51 = L.circle([30.39, -92.32], {radius: 200}).addTo(map).on('mouseover', onClick);;
+
+circle51.key = "LA"
 
 
