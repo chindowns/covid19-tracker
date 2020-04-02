@@ -87,35 +87,36 @@ function chartStateConfirmed(response) {
     // Prep the dates from the Confirmed Cases Array
     var day = 0;
     var count = 0;
-    var Lables;
+    var data = [];
+    var Labels = [];
 
-
+    
     for (var i = 0; i < confCasesArr.length; i++) {
         // iterate through our loop
         //slice the date and add the cases to count
         // if the next date mathes increase count by 1
         // when the date if different push date, count to labels and data
-        var data;
-        var chartData = {
-            Lables: [],
-            lable: "# of Confirmed Cases",
-            data: []
-        };
-    
+            
         daySlice = confCasesArr[i].date.slice(0,10);
-        if (day !== daySlice && day !== 0){
-            chartData[Lables].push(day);
-            chartData[data].push(count);
+        // Before pushing data into the object chartData
+        // Validate that the Array is at a new day and this is not the first iteration.
+        console.log(day +"   " + daySlice)
+        if (day !== daySlice && i > 0){
+            //if charData[Labels] does exist push data ELSE create it
+            Labels.push(day);
+            data.push(count);
             day = 0;
             count = 0;
             console.log("this is push and clear" + day + " " + count);
+           
         }
         day = daySlice;
         count = count + confCasesArr[i].confCases;
         console.log("aggregation " + day + " " + count);
-        console.log(data);
+        
         }
-
+        console.log(data);
+        console.log(Labels);
 
     // console.log(confCasesArr)
     
@@ -171,7 +172,7 @@ function getStateConfirmed() {
         url: queryUsaURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
+        // console.log(response);
 
         var finalStats = {
                     };
