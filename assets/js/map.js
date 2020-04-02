@@ -1,4 +1,4 @@
-var country;
+   var country;
     //var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
 
     
@@ -35,7 +35,8 @@ function onClick(e) {
 
 
 function getHealthNews() {
-    //healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
+    var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
+    console.log(healthQuery)
     $.ajax({
         url: "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
         method: "GET"
@@ -442,5 +443,6 @@ circle50.key = "NC"
 var circle51 = L.circle([30.39, -92.32], {radius: 200}).addTo(map).on('mouseover', onClick);;
 
 circle51.key = "LA"
+
 
 
