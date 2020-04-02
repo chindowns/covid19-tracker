@@ -349,4 +349,4 @@ function getStateInfo(st) {
 // getConfirmedTotals("us");
 // getrecovCntryTotals("us");
 // getDeathTotals("us");
-getStateInfo();
+// getStateInfo();
