@@ -1,4 +1,4 @@
-var country = "us";
+var country = "fr";
 var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
 var countries = ["be", "ch", "cn", "de", "fr", "gb", "it", "nl", "tr", "us"]
 
