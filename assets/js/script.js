@@ -10,10 +10,11 @@ function getConfirmedTotals(loc) {
     }).then(function(response){
             // Pass the information outside of the AJAX Response Function to allow the data to be processed
             processCountryTotals(response, loc, "Confirmed Country Totals");
+            console.log("this is LOC   " + loc);
     });
 }
 
-function getrecovCntryTotals(loc) {
+function getRecoveredTotals(loc) {
     var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/recovered";
     $.ajax({
         url: queryURL,
@@ -68,10 +69,10 @@ function processCountryTotals(arr, loc, param) {
         deathCntryTotal = arr[arr.length - 1].Cases;    
     }
 
-    // console.log("On " + dateCntryTotal + " the total cases for " + countryCntryTotal + " are");
-    // console.log("Confirmed Cases: " + confCntryTotal);
-    // console.log("Recovered Cases: " + recovCntryTotal);
-    // console.log("Death Cases " + deathCntryTotal);
+    console.log("On " + dateCntryTotal + " the total cases for " + countryCntryTotal + " are");
+    console.log("Confirmed Cases: " + confCntryTotal);
+    console.log("Recovered Cases: " + recovCntryTotal);
+    console.log("Death Cases " + deathCntryTotal);
 }
 
 var dateFormat = function(){
@@ -339,26 +340,18 @@ function getStateInfo(st) {
                 finalStats[state] = [{date:response[i].Date, confCases:response[i].Cases}] ;
             }
         }
-            // console.log (finalStats);
 
-
-
-            // console.log(statesListArr);
-        
-        // console.log(statesListArr);
         // console.log(finalStats.CA);
         
-        chartPrep(finalStats.CA);
+        chartPrep(finalStats.state);
     
     });
 }
 
 // Country query IDs "us", "italy", "spain", "china", "germany", "france", "iran", "united-kingdom", "switzerland", "belgium"
 // getConfirmedTotals("us");
-// getrecovCntryTotals("us");
+// getRecoveredTotals("us");
 // getDeathTotals("us");
-
-
 
 
 
@@ -384,7 +377,37 @@ marker1.key = "us";
 var popup1;
 
 
+// Responds to clicks on the country markers
+function ctryOnClick(e) {
+    country = (this.key);
+    // Lookup table to convert country code to country for covidAPI
+    var lookupCtry = {
+        us : "us",
+        sp : "spain",
+        it : "italy",
+        cn : "china",
+        de : "germany",
+        fr : "france",
+        gb : "united-kingdom",
+        ch : "switzerland",
+        be : "belgium",
+        ca : "canada",
+        es : "netherland"
+    }
+    var loc = lookupCtry[country];
+    console.log(loc);
+    getConfirmedTotals(loc);
+    getRecoveredTotals(loc);
+    getDeathTotals(loc);
+
+    country = (this.key);
+    getHealthNews(country);
+}
+
+
+
 function onClick(e) {   
+
 //alert(this.key);
 country = (this.key) // or location or state
 getHealthNews(country)
@@ -397,21 +420,21 @@ var country = "us"
 
 function getHealthNews() {
 var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
-console.log(healthQuery)
+// console.log(healthQuery)
 $.ajax({
     url: "https://newsapi.org/v2/top-headlines?country=" + country + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
     method: "GET"
 }).then(function (response) {
-    console.log(response)
+    // console.log(response)
     $("#news-box").empty();
     var articles = response.articles
     for (var i = 0; i < 10; i++) {
-        console.log(articles[i]);
+        // console.log(articles[i]);
         var headline = articles[i].title
         var link = articles[i].url
         var author = articles[i].author
         if (author !== null) {
-            console.log(author)
+            // console.log(author)
         }
         var pubSource = articles[i].source.name
         var pubDate = articles[i].publishedAt
@@ -443,43 +466,43 @@ getHealthNews(country)
 
 
 
-var marker2 = L.marker([41.9028, 12.4964]).addTo(map).on('mouseover', onClick); // Italy
+var marker2 = L.marker([41.9028, 12.4964]).addTo(map).on('mouseover', ctryOnClick); // Italy
 marker2.key = "it";
 
-var marker3 = L.marker([52.1326, 5.2913]).addTo(map).on('mouseover', onClick); // Netherland
+var marker3 = L.marker([52.1326, 5.2913]).addTo(map).on('mouseover', ctryOnClick); // Netherland
 marker3.key = "es";
 var popup3;
 
-var marker4 = L.marker([35.8617, 104.1954]).addTo(map).on('mouseover', onClick); //China
+var marker4 = L.marker([35.8617, 104.1954]).addTo(map).on('mouseover', ctryOnClick); //China
 marker4.key = "cn";
 
 var popup4;
 
-var marker5 = L.marker([51.1657, 10.4515]).addTo(map).on('mouseover', onClick); // Germany
+var marker5 = L.marker([51.1657, 10.4515]).addTo(map).on('mouseover', ctryOnClick); // Germany
 marker5.key = "de";
 
 var popup5;
 
-var marker6 = L.marker([46.2276, 2.2137]).addTo(map).on('mouseover', onClick); // France
+var marker6 = L.marker([46.2276, 2.2137]).addTo(map).on('mouseover', ctryOnClick); // France
 marker6.key = "fr"
 
 var popup6;
 
-var marker7 = L.marker([56.1304, -106.3468]).addTo(map).on('mouseover', onClick); // Canada
+var marker7 = L.marker([56.1304, -106.3468]).addTo(map).on('mouseover', ctryOnClick); // Canada
 marker7.key = "ca"
 var popup7;
 
-var marker8 = L.marker([55.3781, -3.4360]).addTo(map).on('mouseover', onClick); // United Kingdom
+var marker8 = L.marker([55.3781, -3.4360]).addTo(map).on('mouseover', ctryOnClick); // United Kingdom
 marker8.key = "gb"
 
 var popup8;
 
-var marker9 = L.marker([46.8182, 8.2275]).addTo(map).on('mouseover', onClick); // Switzerland
+var marker9 = L.marker([46.8182, 8.2275]).addTo(map).on('mouseover', ctryOnClick); // Switzerland
 marker9.key = "ch"
 
 var popup9;
 
-var marker10 = L.marker([50.5039, 4.4699]).addTo(map).on('mouseover', onClick); // Belgium
+var marker10 = L.marker([50.5039, 4.4699]).addTo(map).on('mouseover', ctryOnClick); // Belgium
 marker10.key = "be" 
 var popup10;
 
