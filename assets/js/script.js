@@ -69,19 +69,30 @@ function processCountryTotals(arr, loc, param) {
         deathCntryTotal = arr[arr.length - 1].Cases;    
     }
 
+
+
     console.log("On " + dateCntryTotal + " the total cases for " + countryCntryTotal + " are");
     console.log("Confirmed Cases: " + confCntryTotal);
     console.log("Recovered Cases: " + recovCntryTotal);
     console.log("Death Cases " + deathCntryTotal);
 }
 
+var usTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths ";
+var itTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var chTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var caTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var cnTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var deTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var frTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var gbTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var nlTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+var beTotals = "Confirmed " + confCntryTotal + "Recovered " + recovCntryTotal + "Deaths "; 
+
 var dateFormat = function(){
     // Need to format this dateCntryTotal to be more legible    2020-03-31T00:00:00Z
 }
  
-function renderModals() {
-
-}
+function renderModals() {}
 
 var countsArr = [];
 var datesArr = [];
@@ -377,10 +388,6 @@ L.tileLayer(
     attribution: '© <a href="https://apps.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-var marker1 = L.marker([39.0119, -98.4842]).addTo(map).on('click', onClick);; // US
-marker1.key = "us";
-var popup1;
-
 
 // Responds to clicks on the country markers
 function ctryOnClick(e) {
@@ -469,48 +476,54 @@ $.ajax({
 
 getHealthNews(country)
 
-
+var marker1 = L.marker([39.0119, -98.4842]).addTo(map).on('click', onClick);; // US
+marker1.key = "us";
+var popup1;
+marker1.bindPopup(usTotals).openPopup();
 
 var marker2 = L.marker([41.9028, 12.4964]).addTo(map).on('click', ctryOnClick); // Italy
 marker2.key = "it";
+marker2.bindPopup(itTotals).openPopup();
 
 var marker3 = L.marker([52.1326, 5.2913]).addTo(map).on('click', ctryOnClick); // Netherland
 marker3.key = "es";
 var popup3;
+marker3.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker4 = L.marker([35.8617, 104.1954]).addTo(map).on('click', ctryOnClick); //China
 marker4.key = "cn";
-
 var popup4;
+marker4.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker5 = L.marker([51.1657, 10.4515]).addTo(map).on('click', ctryOnClick); // Germany
 marker5.key = "de";
-
 var popup5;
+marker5.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker6 = L.marker([46.2276, 2.2137]).addTo(map).on('click', ctryOnClick); // France
 marker6.key = "fr"
-
 var popup6;
+marker6.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker7 = L.marker([56.1304, -106.3468]).addTo(map).on('click', ctryOnClick); // Canada
 marker7.key = "ca"
 var popup7;
+marker7.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker8 = L.marker([55.3781, -3.4360]).addTo(map).on('click', ctryOnClick); // United Kingdom
 marker8.key = "gb"
-
 var popup8;
+marker8.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker9 = L.marker([46.8182, 8.2275]).addTo(map).on('click', ctryOnClick); // Switzerland
 marker9.key = "ch"
-
 var popup9;
+marker9.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var marker10 = L.marker([50.5039, 4.4699]).addTo(map).on('click', ctryOnClick); // Belgium
 marker10.key = "be" 
 var popup10;
-
+marker10.bindPopup("This is the Transamerica Pyramid").openPopup();
 
 var circle1 = L.circle([37.786542, -122.386022], {
 color: "red",
