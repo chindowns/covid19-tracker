@@ -530,10 +530,8 @@ color: "red",
 fillColor: "#f03",
 fillOpacity: 0.5,
 radius: 50.0
-}).addTo(map);   
-
-
-
+}).addTo(map).on('click', onClick);;;   
+circle1.key = "CA"
 
 var circle2 = L.circle([44.50, -89.50], {radius: 600}).addTo(map).on('click', onClick);;; //Wisconsin, the USA
 circle2.key = "WI"
@@ -846,6 +844,3 @@ circle50.key = "NC"
 var circle51 = L.circle([30.39, -92.32], {radius: 600}).addTo(map).on('click', onClick);;
 
 circle51.key = "LA"
-
-
-
