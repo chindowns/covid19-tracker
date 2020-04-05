@@ -17,61 +17,56 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
-
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
 
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <link rel="shortcut icon" href="assets/images/logo-covid-project-1.ico" />
-    <title>Covid-19</title>
+    <title>Covid-19 Tracker</title>
 </head>
 
 <body>
-    
-    <header class="hero is-12 has-background-dark">
-        <div class="hero-body">
-            <div class="columns is-mobile is-centered is-vcentered">
-                <img class="image is-64x64" src="./assets/images/logo-covid-project-1.png"><span
-                    class="title is-1 has-text-light is-marginless has-text-centered">Covid-19 Tracker</span><img class="image is-64x64"
-                    src="./assets/images/logo-covid-project-1.png">
+       
+    <header class="column hero">
+        <div class="columns hero-body">
+            <div class="column"><img class="image is-64x64 is-pulled-right" src="./assets/images/logo-covid-project-1.png"></div>
+            <div class="is-mobile is-centered is-vcentered">
+                <h1 class="title is-1 has-text-light has-text-centered">Covid-19 Tracker</h1>
             </div>
+            <div class="column"><img class="image is-64x64 is-pulled-left" src="./assets/images/logo-covid-project-1.png"></div>
         </div>
     </header>
 
-    <main class="tile is-12 is-mobile is-ancestor is-marginless has has-background-white-ter">
-        <div class="tile is-8 has-text-centered has-background-white-ter is-parent" id="map-Id">
-            <div class="tile is-child">
-                <div class="columns is-mobile is-centered is-vcentered">
-                    <img class="image is-32x32" src="./assets/images/logo-covid-project-1.png"><span
-                        class="title is-3 has-text-dark is-marginless">Impact</span><img class="image is-32x32"
-                        src="./assets/images/logo-covid-project-1.png">
-                </div>
-                <div class="tile" id="map">
-                    <!-- <figure class="image">
-                        <img src="https://i.redd.it/xgq5f87yva341.jpg">
-                    </figure> -->
-                </div>
-                <!-- moved CANVAS below the </div> above so it displays when MAP display is set to none. -->
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
-        <div class="tile is-4 has-text-centered has-background-white-ter is-parent is-vertical" id="news-Id">
-            <div class="tile is-child" id="center-head">
-                <div class="columns is-mobile is-centered is-vcentered">
-                    <img class="image is-32x32" src="./assets/images/logo-covid-project-1.png"><span
-                        class="title is-3 has-text-dark is-marginless">News</span><img class="image is-32x32"
-                        src="./assets/images/logo-covid-project-1.png">
-                </div>
-                <div class="column is-vertical has-background-white-ter" id="news-box">
-                </div>
-            </div>
+    <main class="columns tile is-variable is-1-moble is-mobile is-ancestor has-background-white-ter">
+   
+        <!-- MAP & CHART COLUMN -->
+        <section class="column tile  is-two-thirds is-mobile has-text-centered is-parent" >
+            <div class="column tile is-child is-mobile">
+                <h2 id="map-header" class="title is-child is-mobile">Map of Concentration Areas</h2>
+                <p class="is-child is-mobile" id="how-to-use">Click on a marker below to see the latest information</p>
+                <div class="is-mobile is-centered is-vcentered"></div>
 
+                <!-- DIV for the MAP -->
+                <div class="tile is-mobile" id="map"></div>
 
-        </div>
+                <!-- DIV for the CHART -->
+                <canvas id="myChart" class="is-mobile"></canvas>
+            </div>
+        </section>
+
+        <!-- NEWSFEED COLUMN -->
+        <section class="column tile is-mobile has-text-centered is-parent is-vertical" id="news-Id">
+            <div class="column tile is-child is-mobile" id="center-head">
+                <div class=" is-child is-mobile is-centered is-vcentered">
+                    <h2 id="news-header" class="title is-mobile">News Feed</h2>
+                </div>
+                <!-- NEWS CONTAINER -->
+                <article class="column is-child is-mobile is-vertical" id="news-box"></article>
+            </div>
+        </section>
     </main>
-
+    
     <!-- <script src="assets/js/map.js"></script> -->
     <script src="assets/js/script.js"></script>
 
