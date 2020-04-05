@@ -13,43 +13,33 @@ L.tileLayer(
 // PIN MARKERS on the countries that provide PopUp on Country Totals
 var marker1 = L.marker([39.0119, -98.4842]).addTo(map).on('click', ctryOnClick); // US
 marker1.key = "us";
-var popup1;
 
 var marker2 = L.marker([41.9028, 12.4964]).addTo(map).on('click', ctryOnClick); // Italy
 marker2.key = "it";
-var popup2;
 
 var marker3 = L.marker([52.1326, 5.2913]).addTo(map).on('click', ctryOnClick); // Netherland
 marker3.key = "nl";
-var popup3;
 
 var marker4 = L.marker([35.8617, 104.1954]).addTo(map).on('click', ctryOnClick); //China
 marker4.key = "cn";
-var popup4;
 
 var marker5 = L.marker([51.1657, 10.4515]).addTo(map).on('click', ctryOnClick); // Germany
 marker5.key = "de";
-var popup5;
 
 var marker6 = L.marker([46.2276, 2.2137]).addTo(map).on('click', ctryOnClick); // France
 marker6.key = "fr";
-var popup6;
 
 var marker7 = L.marker([56.1304, -106.3468]).addTo(map).on('click', ctryOnClick); // Canada
 marker7.key = "ca";
-var popup7;
 
 var marker8 = L.marker([55.3781, -3.4360]).addTo(map).on('click', ctryOnClick); // United Kingdom
 marker8.key = "gb";
-var popup8;
 
 var marker9 = L.marker([46.8182, 8.2275]).addTo(map).on('click', ctryOnClick); // Switzerland
 marker9.key = "ch";
-var popup9;
 
 var marker10 = L.marker([50.5039, 4.4699]).addTo(map).on('click', ctryOnClick); // Belgium
 marker10.key = "be";
-var popup10;
 
 // MARKERS placed on the states to pull up the US Totals
 var circle1 = L.circle([37.786542, -122.386022], {
