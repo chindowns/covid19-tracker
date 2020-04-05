@@ -302,6 +302,10 @@ function renderModals() { }
 var countsArr = [];
 var datesArr = [];
 function chartPrep(response, stateParam) {
+
+    // Progress Bar
+    $('#progress').html('<progress class="progress is-large is-info" max="100">95%</progress>')
+
     // filtered data recieved by getStatesConfirmed
     var confCasesArr = response;
     // console.log(response);
@@ -349,6 +353,7 @@ function renderStateChart(stateLabel) {
     // renders the chart onto the DOM
     var ctx = document.getElementById('myChart');
     $('#map').attr("style", "opacity: 0.5; ");
+    $('#progress').attr("style", "display:none;");
     ctx.setAttribute("style", "display:flex;");
 
     var labelsArr = datesArr;
@@ -386,6 +391,10 @@ function getStateInfo(st) {
         method: "GET"
     }).then(function (response) {
         // console.log(response);
+
+        // Progress Bar
+        $('#progress').html('<progress class="progress is-large is-info" max="100">75%</progress>')
+
 
         // finalStats is the variable container for the data to be charted
         var finalStats = {
@@ -497,6 +506,7 @@ function onClick(e) {
     getHealthNews("us");
     // Get State Info for Chart
     getStateInfo(state);
+    $('#progress').html('<progress class="progress is-large is-info" max="100">25%</progress>');
 }
 
 // News API Query
@@ -516,7 +526,7 @@ function getHealthNews(location) {
         var news = [];
 
         // Sets the news list objects to 10 articles in an array
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 10; i++) {
             var headlines = {
                 headline: articles[i].title,
                 link: articles[i].url,
