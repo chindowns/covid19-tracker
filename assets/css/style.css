@@ -18,7 +18,7 @@ justify-content: center !important;
 }
 
 #news-box {
-  height: auto;
+  height: 600px;
   border-top: 20px;
   border-bottom: 20px;
 }
@@ -140,12 +140,12 @@ justify-content: center !important;
 
 #map { 
   
-  width:90%; height:480px;
+  width:93%; height:480px;
   margin-top: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
 #myChart {
-  width: 100%;  
+  width: 95%;  
 }
