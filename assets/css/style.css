@@ -51,10 +51,6 @@ justify-content: center !important;
   margin: 0.5rem;
 }
 
-#map-header {
-  margin-bottom: 0;
-}
-
 #news-box {
   margin: 25px 0 0 0;
   text-align: left;
@@ -63,8 +59,8 @@ justify-content: center !important;
   overflow-y: auto;
 }
 
-#news-hr {
-  margin: 0.5rem;
+#map-header {
+  margin-bottom: 0;
 }
 
 #map-Id {
