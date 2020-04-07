@@ -40,8 +40,7 @@ https://www.linkedin.com/in/juliet-george-864950b8/
 
 
 *** Brad Davis  
-https://www.linkedin.com/in/brad-davis-7885884/   
-https://github.com/davisbradleyj   
+https://www.linkedin.com/in/brad-davis-7885884/    
 https://davisbradleyj.github.io   
 
 

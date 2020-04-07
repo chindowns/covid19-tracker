@@ -87,7 +87,7 @@ justify-content: center !important;
   width: 95%;
   position: absolute;
   left: 36px;
-  top: 198px;
+  top: 195px;
   z-index:1;
   background: #FFF;
   opacity: .9;
@@ -95,7 +95,7 @@ justify-content: center !important;
 }
 
 #progress {
-  width: 60%;
+  width: 63%;
   position: absolute;
   left: 36px;
   top: 350px;
