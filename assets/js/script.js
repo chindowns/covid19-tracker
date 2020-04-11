@@ -250,17 +250,6 @@ function getDeathTotals(loc) {
     });
 }
 
-xios.get('https://api.covid19api.com/summary')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function () {
-    // always executed
-  });
 var locCheck;
 var countryCntryTotal = "";
 var dateCntryTotal = "";
