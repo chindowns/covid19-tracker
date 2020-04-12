@@ -38,17 +38,18 @@
         </div>
     </header>
 
-    <main class="columns tile is-variable is-1-moble is-mobile is-ancestor has-background-white-ter">
-   
+    <main class="columns is-desktop tile is-ancestor has-background-white-ter">
+   <!-- main class= is-variable  -->
         <!-- MAP & CHART COLUMN -->
-        <section class="column tile  is-two-thirds is-mobile has-text-centered is-parent" >
+        <section class="column tile is-two-thirds is-mobile has-text-centered is-parent" >
+
             <div class="column tile is-child is-mobile">
                 <h2 id="map-header" class="title is-child is-mobile">Map of Concentration Areas</h2>
-                <p class="is-child is-mobile" id="how-to-use">Click on a marker below to see the latest information</p>
+                <p class="" id="how-to-use">Click on a marker below to see the latest information</p>
                 <div class="is-mobile is-centered is-vcentered"></div>
 
                 <!-- DIV for the MAP -->
-                <div class="tile is-mobile" id="map"></div>
+                <div id="map" class="tile is-mobile"></div>
 
                 <!-- DIV for the CHART -->
                 <canvas id="myChart" class="is-mobile"></canvas>
