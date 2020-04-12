@@ -90,10 +90,10 @@ justify-content: center !important;
 
 #progress {
   width: 33%;
-  position: relative;
-  left: 36px;
+  position: absolute;
+  left: 50px;
   top: 350px;
-  z-index:1;
+  z-index:500;
   background: #FFF;
   opacity: .9;
   /* display: none; */

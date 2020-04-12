@@ -10,6 +10,18 @@ L.tileLayer(
     attribution: '© <a href="https://apps.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+var marker1;
+var marker2;
+var marker3;
+var marker4;
+var marker5;
+var marker6;
+var marker7;
+var marker8;
+var marker9;
+var marker10;
+
+
 // Get the Summary data for all Countries
 var queryURL = "https://api.covid19api.com/summary";
 $.ajax({
@@ -17,7 +29,7 @@ $.ajax({
     method: "GET"
 }).then(function (response) {
     // Pass the information outside of the AJAX Response Function to allow the data to be processed
-    processSummaryData(response);
+    processGlobalData(response);
     // console.log(`==== Summary Data ==== `);
     // console.log(JSON.parse(response));
 
@@ -31,34 +43,34 @@ $.ajax({
         shadowSize: [41, 41]
       });
     
-    const marker1 = L.marker([39.0119, -98.4842], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // US
+    marker1 = L.marker([39.0119, -98.4842], {icon: redIcon}).addTo(map).on('click', countryClick); // US
     marker1.key = "us";
     
-    const marker2 = L.marker([41.9028, 12.4964], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Italy
+    marker2 = L.marker([41.9028, 12.4964], {icon: redIcon}).addTo(map).on('click', countryClick); // Italy
     marker2.key = "it";
     
-    const marker3 = L.marker([52.1326, 5.2913], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Netherland
+    marker3 = L.marker([52.1326, 5.2913], {icon: redIcon}).addTo(map).on('click', countryClick); // Netherland
     marker3.key = "nl";
     
-    const marker4 = L.marker([35.8617, 104.1954], {icon: redIcon}).addTo(map).on('click', ctryOnClick); //China
+    marker4 = L.marker([35.8617, 104.1954], {icon: redIcon}).addTo(map).on('click', countryClick); //China
     marker4.key = "cn";
     
-    const marker5 = L.marker([51.1657, 10.4515], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Germany
+    marker5 = L.marker([51.1657, 10.4515], {icon: redIcon}).addTo(map).on('click', countryClick); // Germany
     marker5.key = "de";
     
-    const marker6 = L.marker([46.2276, 2.2137], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // France
+    marker6 = L.marker([46.2276, 2.2137], {icon: redIcon}).addTo(map).on('click', countryClick); // France
     marker6.key = "fr";
     
-    const marker7 = L.marker([56.1304, -106.3468], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Canada
+    marker7 = L.marker([56.1304, -106.3468], {icon: redIcon}).addTo(map).on('click', countryClick); // Canada
     marker7.key = "ca";
     
-    const marker8 = L.marker([55.3781, -3.4360], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // United Kingdom
+    marker8 = L.marker([55.3781, -3.4360], {icon: redIcon}).addTo(map).on('click', countryClick); // United Kingdom
     marker8.key = "gb";
     
-    const marker9 = L.marker([46.8182, 8.2275], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Switzerland
+    marker9 = L.marker([46.8182, 8.2275], {icon: redIcon}).addTo(map).on('click', countryClick); // Switzerland
     marker9.key = "ch";
     
-    const marker10 = L.marker([50.5039, 4.4699], {icon: redIcon}).addTo(map).on('click', ctryOnClick); // Belgium
+    marker10 = L.marker([50.5039, 4.4699], {icon: redIcon}).addTo(map).on('click', countryClick); // Belgium
     marker10.key = "be";
     
     // MARKERS placed on the states to pull up the US Totals
@@ -236,105 +248,47 @@ var addComma = function(num) {
     );
 }
 
-function processSummaryData(response) {
+const countriesData={};
+const countries = {};
+
+function processGlobalData(response) {
     const summaryData = response;
     console.log(summaryData);
 
     let newConfirmed = addComma(summaryData.Global.NewConfirmed);
     let totalConfirmed = addComma(summaryData.Global.TotalConfirmed);
-    let newRecovered = addComma(summaryData.Global.NewRecovered);
-    let totalRecovered = addComma(summaryData.Global.TotalRecovered);
+    // let newRecovered = addComma(summaryData.Global.NewRecovered);
+    // let totalRecovered = addComma(summaryData.Global.TotalRecovered);
     let totalDeaths = addComma(summaryData.Global.TotalDeaths);
    
     renderGlobalStats(totalConfirmed, newConfirmed, totalDeaths);
-}
-
-function renderGlobalStats(conf, newConf, deaths) {
-    $('#global-stats').html(
-        `Global Confirmed Cases:  ${conf} <br/>
-        Global New Cases:  ${newConf} <br/>
-        Global Deaths:  ${deaths}`);
-}
-
-// Each AJAX call to covid19api.com must be in its own function or the 
-// response data cannot be returned outside of the AJAx response function.
-function getConfirmedTotals(loc) {
-    var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/confirmed";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        // Pass the information outside of the AJAX Response Function to allow the data to be processed
-        processCountryTotals(response, loc, "Confirmed Country Totals");
-        // console.log("this is LOC   " + loc);
+    
+    response.Countries.forEach(obj => {
+        let country = obj.CountryCode.toLowerCase();
+        countries[country]={obj};
     });
+    return countries;
 }
 
-function getRecoveredTotals(loc) {
-    var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/recovered";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        processCountryTotals(response, loc, "Recovered Country Totals")
-        console.log(response);
-    });
-}
+function countryClick() {
+    let country = (this.key);
+    console.log(this.key);
+    getHealthNews(country);
+    console.log(countries);
 
-function getDeathTotals(loc) {
-    var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/deaths";
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        processCountryTotals(response, loc, "Death Country Totals");
-    });
-}
+    let countryData = countries[country];
+    console.log(countryData);
 
-var locCheck;
-var countryCntryTotal = "";
-var dateCntryTotal = "";
-var confCntryTotal = 0;
-var recovCntryTotal = 0;
-var deathCntryTotal = 0;
+    let totalConfirmed = addComma(countryData.obj.TotalConfirmed);
+    let newConfirmed = addComma(countryData.obj.NewConfirmed);
+    let totalRecovered = addComma(countryData.obj.TotalRecovered);
+    let totalDeaths = addComma(countryData.obj.TotalDeaths);
 
-function processCountryTotals(arr, loc, param) {
-    // console.log(arr);
-    // if countryCheck === loc parameter then we know the site information is for the same countryCntryTotal otherwise clear the variables.
-    if (locCheck !== loc) {
-        countryCntryTotal = "";
-        dateCntryTotal = "";
-        confCntryTotal = 0;
-        recovCntryTotal = 0;
-        deathCntryTotal = 0;
-        // console.log("Clear Variables ran")
-    }
-    locCheck = loc;
-
-    // Set the variables to be pushed to the pop-up (modal)
-    if (param === "Confirmed Country Totals") {
-        countryCntryTotal = arr[arr.length - 1].Country;
-        dateCntryTotal = arr[arr.length - 1].Date;
-        confCntryTotal = arr[arr.length - 1].Cases;
-    }
-
-    if (param === "Recovered Country Totals") {
-        recovCntryTotal = arr[arr.length - 1].Cases;
-    }
-
-    if (param === "Death Country Totals") {
-        deathCntryTotal = arr[arr.length - 1].Cases;
-    }
-
-    renderCtryCases();
-}
-
-function renderCtryCases() {
-    var popUpStats = "<b>" + countryCntryTotal + "</b>" + "<br />Confirmed " + confCntryTotal + "<br />Recovered "
-        + recovCntryTotal + "<br/>Deaths " + deathCntryTotal;
-
-    console.log(`PopUp Stats
-                ${popUpStats}`);
+    let popUpStats = `${countryData.obj.Country}<br/>
+    Total Confirmed:  ${totalConfirmed}<br/>
+    New Confirmed:  ${newConfirmed}<br/>
+    Total Recovered:  ${totalRecovered}<br/>
+    Total Deaths:  ${totalDeaths} `
 
     marker1.bindPopup(popUpStats);
     marker2.bindPopup(popUpStats);
@@ -346,10 +300,110 @@ function renderCtryCases() {
     marker8.bindPopup(popUpStats);
     marker9.bindPopup(popUpStats);
     marker10.bindPopup(popUpStats);
+
 }
 
-function renderModals() { }
+function renderGlobalStats(conf, newConf, deaths) {
+    $('#global-stats').html(
+        `Global Confirmed Cases:  ${conf} <br/>
+        Global New Cases:  ${newConf} <br/>
+        Global Deaths:  ${deaths}`);
+}
 
+// Each AJAX call to covid19api.com must be in its own function or the 
+// response data cannot be returned outside of the AJAx response function.
+// function getConfirmedTotals(loc) {
+//     var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/confirmed";
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function (response) {
+//         // Pass the information outside of the AJAX Response Function to allow the data to be processed
+//         processCountryTotals(response, loc, "Confirmed Country Totals");
+//         // console.log("this is LOC   " + loc);
+//     });
+// }
+
+// function getRecoveredTotals(loc) {
+//     var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/recovered";
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function (response) {
+//         processCountryTotals(response, loc, "Recovered Country Totals")
+//         console.log(response);
+//     });
+// }
+
+// function getDeathTotals(loc) {
+//     var queryURL = "https://api.covid19api.com/total/country/" + loc + "/status/deaths";
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function (response) {
+//         processCountryTotals(response, loc, "Death Country Totals");
+//     });
+// }
+
+// var locCheck;
+// var countryCntryTotal = "";
+// var dateCntryTotal = "";
+// var confCntryTotal = 0;
+// var recovCntryTotal = 0;
+// var deathCntryTotal = 0;
+
+// function processCountryTotals(arr, loc, param) {
+//     // console.log(arr);
+//     // if countryCheck === loc parameter then we know the site information is for the same countryCntryTotal otherwise clear the variables.
+//     if (locCheck !== loc) {
+//         countryCntryTotal = "";
+//         dateCntryTotal = "";
+//         confCntryTotal = 0;
+//         recovCntryTotal = 0;
+//         deathCntryTotal = 0;
+//         // console.log("Clear Variables ran")
+//     }
+//     locCheck = loc;
+
+//     // Set the variables to be pushed to the pop-up (modal)
+//     if (param === "Confirmed Country Totals") {
+//         countryCntryTotal = arr[arr.length - 1].Country;
+//         dateCntryTotal = arr[arr.length - 1].Date;
+//         confCntryTotal = arr[arr.length - 1].Cases;
+//     }
+
+//     if (param === "Recovered Country Totals") {
+//         recovCntryTotal = arr[arr.length - 1].Cases;
+//     }
+
+//     if (param === "Death Country Totals") {
+//         deathCntryTotal = arr[arr.length - 1].Cases;
+//     }
+
+//     renderCtryCases();
+// }
+
+// function renderCtryCases() {
+//     var popUpStats = "<b>" + countryCntryTotal + "</b>" + "<br />Confirmed " + confCntryTotal + "<br />Recovered "
+//         + recovCntryTotal + "<br/>Deaths " + deathCntryTotal;
+
+//     console.log(`PopUp Stats
+//                 ${popUpStats}`);
+
+//     marker1.bindPopup(popUpStats);
+//     marker2.bindPopup(popUpStats);
+//     marker3.bindPopup(popUpStats);
+//     marker4.bindPopup(popUpStats);
+//     marker5.bindPopup(popUpStats);
+//     marker6.bindPopup(popUpStats);
+//     marker7.bindPopup(popUpStats);
+//     marker8.bindPopup(popUpStats);
+//     marker9.bindPopup(popUpStats);
+//     marker10.bindPopup(popUpStats);
+// }
+
+function renderModals() { }
+ 
 var countsArr = [];
 var datesArr = [];
 function chartPrep(response, stateParam) {
@@ -390,6 +444,8 @@ console.log(count);
         day = daySlice;
         count = count + confCasesArr[i].confCases;
     }
+    console.log(datesArr);
+    console.log(countsArr);
 
     renderStateChart(stateParam);
     countsArr = [];
@@ -529,34 +585,34 @@ function getStateInfo(st) {
 
 
 // Responds to clicks on the country markers
-function ctryOnClick() {
-    let country = (this.key);
-    console.log(`This is the country key clicked = ${country}`)
-    // Lookup table to convert country code to country for covidAPI
-    const lookupCtry = {
-        us: "us",
-        sp: "spain",
-        it: "italy",
-        cn: "china",
-        de: "germany",
-        fr: "france",
-        gb: "united-kingdom",
-        ch: "switzerland",
-        be: "belgium",
-        ca: "canada",
-        nl: "netherlands"
-    }
-    // country = (this.key);
-    let loc = lookupCtry[country];
+// function ctryOnClick() {
+//     let country = (this.key);
+//     console.log(`This is the country key clicked = ${country}`)
+//     // Lookup table to convert country code to country for covidAPI
+//     const lookupCtry = {
+//         us: "us",
+//         sp: "spain",
+//         it: "italy",
+//         cn: "china",
+//         de: "germany",
+//         fr: "france",
+//         gb: "united-kingdom",
+//         ch: "switzerland",
+//         be: "belgium",
+//         ca: "canada",
+//         nl: "netherlands"
+//     }
+//     // country = (this.key);
+//     let loc = lookupCtry[country];
 
-    // Get country data
-    getConfirmedTotals(loc);
-    getRecoveredTotals(loc);
-    getDeathTotals(loc);
+//     // Get country data
+//     getConfirmedTotals(loc);
+//     getRecoveredTotals(loc);
+//     getDeathTotals(loc);
 
-    // get country news
-    getHealthNews(country);
-}
+//     // get country news
+//     getHealthNews(country);
+// }
 
 // Responds to clicks on US State markers
 function onClick() {
