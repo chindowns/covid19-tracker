@@ -316,43 +316,52 @@ function renderModals() { }
 var countsArr = [];
 var datesArr = [];
 function chartPrep(response, stateParam) {
-
     // Progress Bar
     $('#progress').html('<progress class="progress is-large is-info" max="100">95%</progress>')
-
     // filtered data recieved by getStatesConfirmed
-    var confCasesArr = response;
+    const confCasesArr = response;
     // console.log(response);
 
     // prep and aggregate dates
     // Prep the dates from the Confirmed Cases Array
-    var day = 0;
+    let day = "";
     var count = 0;
-console.log(confCasesArr);
-    for (var i = 0; i < confCasesArr.length; i++) {
-        // iterate through our loop
-        //slice the date and add the cases to count
-        // if the next date mathes increase count by 1
-        // when the date if different push date, count to labels and data
-
-        daySlice = confCasesArr[i].date.slice(0, 10);
-console.log(daySlice);
-        // Before pushing data into the object chartData
-        // Validate that the Array is at a new day and this is not the first iteration.
-        // console.log(day +"   " + daySlice)
-        if (day !== daySlice && i > 0) {
-            //if charData[Labels] does exist push data ELSE create it
-console.log(day);
-console.log(count);
-            datesArr.push(day);
+    
+    confCasesArr.forEach((obj, index) => {
+        console.log(index);
+        console.log(obj.date);
+        console.log(obj.confCases);
+        console.log(count);
+        if(index === 0 || day === obj.date){
+            count += obj.confCases;
+        } else {
+            datesArr.push(obj.date);
             countsArr.push(count);
-            day = 0;
+            day = obj.date;
             count = 0;
-            // console.log("this is push and clear" + day + " " + count);
         }
-        day = daySlice;
-        count = count + confCasesArr[i].confCases;
-    }
+    })
+    //     for (var i = 0; i < confCasesArr.length; i++) {
+    //     // iterate through our loop
+    //     //slice the date and add the cases to count
+    //     // if the next date mathes increase count by 1
+    //     // when the date if different push date, count to labels and data
+
+    //     daySlice = confCasesArr[i].date;
+    //     // Before pushing data into the object chartData
+    //     // Validate that the Array is at a new day and this is not the first iteration.
+    //     // console.log(day +"   " + daySlice)
+    //     if (day !== daySlice && i > 0) {
+    //         //if charData[Labels] does exist push data ELSE create it
+    //         datesArr.push(day);
+    //         countsArr.push(count);
+    //         day = 0;
+    //         count = 0;
+    //         // console.log("this is push and clear" + day + " " + count);
+    //     }
+    //     day = daySlice;
+    //     count = count + confCasesArr[i].confCases;
+    // }
     console.log(datesArr);
     console.log(countsArr);
 
@@ -401,14 +410,18 @@ function renderStateChart(stateLabel) {
     });
     // console.log(myChart);
 }
+var finalStats = {};
+var finalStatsChk = false;
 
 function getStateInfo(st) {
-    var queryUsaURL = "https://api.covid19api.com/country/us/status/confirmed";
-
+    var queryUsaURL = "https://api.covid19api.com/dayone/country/us/status/confirmed";
+    
+    if (finalStatsChk === false){ //Execute ajax call on the first time the US details are requested
     $.ajax({
         url: queryUsaURL,
         method: "GET"
     }).then(function (response) {
+        finalStatsChk = true;
         console.log('===== Entire USA stats ======')
         console.log(response);
 
@@ -417,8 +430,6 @@ function getStateInfo(st) {
 
 
         // finalStats is the variable container for the data to be charted
-        var finalStats = {
-        };
         // state is used as the key for finalStats object
         var state;
         var lookUp = {
@@ -474,22 +485,24 @@ function getStateInfo(st) {
 
             // This is the process that pushes the data into an object array that passes to chartPrep
             if (finalStats[state]) {
-                var confirmed = {
-                    date: dateResp,
+                var confirmedObj = {
+                    date: dateResp.slice(0,10),
                     confCases: casesResp
                 };
                 // console.log("object of array state " + JSON.stringify(confirmed));
-                finalStats[state].push(confirmed);
+                finalStats[state].push(confirmedObj);
 
                 //push new obj (date and count)
             } else if (dateResp !== undefined) {
-                finalStats[state] = [confirmed];
+                finalStats[state] = [confirmedObj];
             }
         }
-        console.log('======= Filtered Stats =============')
-        console.log(finalStats[st])
+        // console.log('======= Filtered Stats =============')
+        // console.log(finalStats[st])
         chartPrep(finalStats[st], st);
     });
+    }else{console.log(finalStats);
+        chartPrep(finalStats[st], st)};
 }
 
 // Responds to clicks on US State markers
