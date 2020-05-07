@@ -317,8 +317,8 @@ var countsArr = [];
 var datesArr = [];
 function chartPrep(response, stateParam) {
     // clear the arrays before processing another state in the same session
-    countsArr = [];
-    datesArr = [];
+    countsArr.length = 0;
+    datesArr.length = 0;
 
     // Progress Bar
     $('#progress').html('<progress class="progress is-large is-info" max="100">95%</progress>')
@@ -333,10 +333,10 @@ function chartPrep(response, stateParam) {
     
     response.forEach((obj, index) => {
     // for (let i = 0; i < response.length; i++) {   
-        console.log(index);
-        console.log(obj.date);
-        console.log(obj.confCases);
-        console.log(count);
+        // console.log(index);
+        // console.log(obj.date);
+        // console.log(obj.confCases);
+        // console.log(count);
         if(index === 0) {
             day === obj.date;
             count === obj.confCases;
@@ -354,8 +354,8 @@ function chartPrep(response, stateParam) {
             pushInfo(function(){
                 day = obj.date;
                 count = obj.confCases;
-                console.log(`Reset Day to ${day}`)
-                console.log(`Reset Count to ${count}`)
+            //     console.log(`Reset Day to ${day}`)
+            //     console.log(`Reset Count to ${count}`)
             });
         }
     });
@@ -459,7 +459,9 @@ function getStateInfo(st) {
             let dateResp = response[i].Date;
             let casesResp = response[i].Cases;
             let provinceResp = response[i].Province;
-            state = lookUp[provinceResp];
+            // console.log(`Province Response is: ${provinceResp}`);
+            state = lookUp[provinceResp]; // LOOKS UP the 2 digit state code when full state is passed in the data.
+            // console.log(`State is: ${state}`)
 
             // This is the process that pushes the data into an object array that passes to chartPrep
             if (finalStats[state]) {
@@ -471,18 +473,18 @@ function getStateInfo(st) {
                 finalStats[state].push(confirmedObj);
 
                 //push new obj (date and count)
-            } else if (dateResp !== undefined) {
+            } else if (dateResp !== undefined && state !== undefined && state !== "") {
                 finalStats[state] = [confirmedObj];
             }
         }
-        // Set finalStatsChk to TRUE so this only calls the api once per session
-        finalStatsChk = true;
+    
         // console.log('======= Filtered Stats =============')
-        // console.log(finalStats[st])
-        chartPrep(finalStats[state], st);
-    });
-    }else{console.log(finalStats);
-        chartPrep(finalStats[state], st)}
+        console.log(finalStats[st]);
+        console.log(st)
+        chartPrep(finalStats[st], st);
+    })
+    }
+    else{chartPrep(finalStats[st], st)}
 }
 
 // Responds to clicks on US State markers
@@ -491,6 +493,7 @@ function onClick() {
     // get US News
     getHealthNews("us");
     // Get State Info for Chart
+    console.log(state);
     getStateInfo(state);
     $('#progress').html('<progress class="progress is-large is-info" max="100">25%</progress>');
 }
