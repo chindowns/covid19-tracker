@@ -316,6 +316,10 @@ function renderModals() { }
 var countsArr = [];
 var datesArr = [];
 function chartPrep(response, stateParam) {
+    // clear the arrays before processing another state in the same session
+    countsArr = [];
+    datesArr = [];
+
     // Progress Bar
     $('#progress').html('<progress class="progress is-large is-info" max="100">95%</progress>')
     // filtered data recieved by getStatesConfirmed
@@ -327,47 +331,39 @@ function chartPrep(response, stateParam) {
     let day = "";
     var count = 0;
     
-    confCasesArr.forEach((obj, index) => {
+    response.forEach((obj, index) => {
+    // for (let i = 0; i < response.length; i++) {   
         console.log(index);
         console.log(obj.date);
         console.log(obj.confCases);
         console.log(count);
-        if(index === 0 || day === obj.date){
+        if(index === 0) {
+            day === obj.date;
+            count === obj.confCases;
+        }
+
+        if(day === obj.date){
             count += obj.confCases;
         } else {
-            datesArr.push(obj.date);
+            function pushInfo(cb){
+            datesArr.push(day);
             countsArr.push(count);
-            day = obj.date;
-            count = 0;
-        }
-    })
-    //     for (var i = 0; i < confCasesArr.length; i++) {
-    //     // iterate through our loop
-    //     //slice the date and add the cases to count
-    //     // if the next date mathes increase count by 1
-    //     // when the date if different push date, count to labels and data
+            cb();
+            }
 
-    //     daySlice = confCasesArr[i].date;
-    //     // Before pushing data into the object chartData
-    //     // Validate that the Array is at a new day and this is not the first iteration.
-    //     // console.log(day +"   " + daySlice)
-    //     if (day !== daySlice && i > 0) {
-    //         //if charData[Labels] does exist push data ELSE create it
-    //         datesArr.push(day);
-    //         countsArr.push(count);
-    //         day = 0;
-    //         count = 0;
-    //         // console.log("this is push and clear" + day + " " + count);
-    //     }
-    //     day = daySlice;
-    //     count = count + confCasesArr[i].confCases;
-    // }
+            pushInfo(function(){
+                day = obj.date;
+                count = obj.confCases;
+                console.log(`Reset Day to ${day}`)
+                console.log(`Reset Count to ${count}`)
+            });
+        }
+    });
+
     console.log(datesArr);
     console.log(countsArr);
 
     renderStateChart(stateParam);
-    countsArr = [];
-    datesArr = [];
 }
 
 $(document).on('click', "#myChart", function () {
@@ -463,25 +459,7 @@ function getStateInfo(st) {
             let dateResp = response[i].Date;
             let casesResp = response[i].Cases;
             let provinceResp = response[i].Province;
-            // This is the process that cleans and filters the data into states
-            // var provinceArr = response[i].Province.split(',');
-            // only trims element 1 if it exists
-            // if (provinceArr[1] !== undefined) {
-            //     var province1 = provinceArr[1].trim();
-            // }
-
-            // if (stChk.indexOf(provinceArr[0]) !== -1) {
-                state = lookUp[provinceResp];
-                // if (state === undefined) { console.log(provinceArr[0]) }
-                // console.log("province0 state lookup:  " + state);
-
-            // } else {
-            //     if (province1 !== undefined && province1.length === 2) {
-            //         state = lookUp[province1];
-            //         if (state === undefined) { console.log(provinceArr[1]) }
-            //         // console.log("province1 (2d) state lookup:  " + state);
-            //     }
-            // }
+            state = lookUp[provinceResp];
 
             // This is the process that pushes the data into an object array that passes to chartPrep
             if (finalStats[state]) {
@@ -497,12 +475,14 @@ function getStateInfo(st) {
                 finalStats[state] = [confirmedObj];
             }
         }
+        // Set finalStatsChk to TRUE so this only calls the api once per session
+        finalStatsChk = true;
         // console.log('======= Filtered Stats =============')
         // console.log(finalStats[st])
-        chartPrep(finalStats[st], st);
+        chartPrep(finalStats[state], st);
     });
     }else{console.log(finalStats);
-        chartPrep(finalStats[st], st)};
+        chartPrep(finalStats[state], st)}
 }
 
 // Responds to clicks on US State markers
