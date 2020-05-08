@@ -43,200 +43,217 @@ $.ajax({
         shadowSize: [41, 41]
       });
     
-    marker1 = L.marker([39.0119, -98.4842], {icon: redIcon}).addTo(map).on('click', countryClick); // US
-    marker1.key = "us";
+      marker1 = L.marker([39.0119, -98.4842], {icon: redIcon}).addTo(map).on('click', countryClick); // US
+      marker1.key = "us";
+      marker2 = L.marker([41.9028, 12.4964], {icon: redIcon}).addTo(map).on('click', countryClick); // Italy
+      marker2.key = "it";
+      marker3 = L.marker([52.1326, 5.2913], {icon: redIcon}).addTo(map).on('click', countryClick); // Netherland
+      marker3.key = "nl";
+      marker4 = L.marker([35.8617, 104.1954], {icon: redIcon}).addTo(map).on('click', countryClick); //China
+      marker4.key = "cn";
+      marker5 = L.marker([51.1657, 10.4515], {icon: redIcon}).addTo(map).on('click', countryClick); // Germany
+      marker5.key = "de";
+      marker6 = L.marker([46.2276, 2.2137], {icon: redIcon}).addTo(map).on('click', countryClick); // France
+      marker6.key = "fr";
+      marker7 = L.marker([56.1304, -106.3468], {icon: redIcon}).addTo(map).on('click', countryClick); // Canada
+      marker7.key = "ca";
+      marker8 = L.marker([55.3781, -3.4360], {icon: redIcon}).addTo(map).on('click', countryClick); // United Kingdom
+      marker8.key = "gb";
+      marker9 = L.marker([46.8182, 8.2275], {icon: redIcon}).addTo(map).on('click', countryClick); // Switzerland
+      marker9.key = "ch";
+      marker10 = L.marker([50.5039, 4.4699], {icon: redIcon}).addTo(map).on('click', countryClick); // Belgium
+      marker10.key = "be";
+      marker11 = L.marker([-25.2744, 133.7751], {icon: redIcon}).addTo(map).on('click', countryClick); // Australia
+      marker11.key = "au"
+      marker12 = L.marker([-15.8267, -47.9218], {icon: redIcon}).addTo(map).on('click', countryClick); // Brazil
+      marker12.key = "br"
+      marker13 = L.marker([40.4637, -3.7492], {icon: redIcon}).addTo(map).on('click', countryClick); // Spain
+      marker13.key = "es"
+      marker14 = L.marker([55.7558, 37.6173], {icon: redIcon}).addTo(map).on('click', countryClick); // Russia
+      marker14.key = "ru"
+
+    // marker1 = L.marker([39.0119, -98.4842], {icon: redIcon}).addTo(map).on('click', countryClick); // US
+    // marker1.key = "us";
     
-    marker2 = L.marker([41.9028, 12.4964], {icon: redIcon}).addTo(map).on('click', countryClick); // Italy
-    marker2.key = "it";
+    // marker2 = L.marker([41.9028, 12.4964], {icon: redIcon}).addTo(map).on('click', countryClick); // Italy
+    // marker2.key = "it";
     
-    marker3 = L.marker([52.1326, 5.2913], {icon: redIcon}).addTo(map).on('click', countryClick); // Netherland
-    marker3.key = "nl";
+    // marker3 = L.marker([52.1326, 5.2913], {icon: redIcon}).addTo(map).on('click', countryClick); // Netherland
+    // marker3.key = "nl";
     
-    marker4 = L.marker([35.8617, 104.1954], {icon: redIcon}).addTo(map).on('click', countryClick); //China
-    marker4.key = "cn";
+    // marker4 = L.marker([35.8617, 104.1954], {icon: redIcon}).addTo(map).on('click', countryClick); //China
+    // marker4.key = "cn";
     
-    marker5 = L.marker([51.1657, 10.4515], {icon: redIcon}).addTo(map).on('click', countryClick); // Germany
-    marker5.key = "de";
+    // marker5 = L.marker([51.1657, 10.4515], {icon: redIcon}).addTo(map).on('click', countryClick); // Germany
+    // marker5.key = "de";
     
-    marker6 = L.marker([46.2276, 2.2137], {icon: redIcon}).addTo(map).on('click', countryClick); // France
-    marker6.key = "fr";
+    // marker6 = L.marker([46.2276, 2.2137], {icon: redIcon}).addTo(map).on('click', countryClick); // France
+    // marker6.key = "fr";
     
-    marker7 = L.marker([56.1304, -106.3468], {icon: redIcon}).addTo(map).on('click', countryClick); // Canada
-    marker7.key = "ca";
+    // marker7 = L.marker([56.1304, -106.3468], {icon: redIcon}).addTo(map).on('click', countryClick); // Canada
+    // marker7.key = "ca";
     
-    marker8 = L.marker([55.3781, -3.4360], {icon: redIcon}).addTo(map).on('click', countryClick); // United Kingdom
-    marker8.key = "gb";
+    // marker8 = L.marker([55.3781, -3.4360], {icon: redIcon}).addTo(map).on('click', countryClick); // United Kingdom
+    // marker8.key = "gb";
     
-    marker9 = L.marker([46.8182, 8.2275], {icon: redIcon}).addTo(map).on('click', countryClick); // Switzerland
-    marker9.key = "ch";
+    // marker9 = L.marker([46.8182, 8.2275], {icon: redIcon}).addTo(map).on('click', countryClick); // Switzerland
+    // marker9.key = "ch";
     
-    marker10 = L.marker([50.5039, 4.4699], {icon: redIcon}).addTo(map).on('click', countryClick); // Belgium
-    marker10.key = "be";
+    // marker10 = L.marker([50.5039, 4.4699], {icon: redIcon}).addTo(map).on('click', countryClick); // Belgium
+    // marker10.key = "be";
     
     // MARKERS placed on the states to pull up the US Totals
-    var circle1 = L.circle([37.786542, -122.386022], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle1 = L.circle([37.786542, -122.386022], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle1.key = "US";
     
-    var circle2 = L.circle([44.50, -89.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle2 = L.circle([44.50, -89.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle2.key = "WI";
     
-    var circle3 = L.circle([39.00, -80.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle3 = L.circle([39.00, -80.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle3.key = "WV";
     
-    var circle4 = L.circle([44.0, -72.69], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle4 = L.circle([44.0, -72.69], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle4.key = "VT";
     
-    var circle5 = L.circle([31.00, -100.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle5 = L.circle([31.00, -100.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle5.key = "TX";
     
-    var circle6 = L.circle([44.50, -100], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle6 = L.circle([44.50, -100], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle6.key = "ND";
     
-    var circle7 = L.circle([41.70, -71.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle7 = L.circle([41.70, -71.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle7.key = "RI";
     
-    var circle8 = L.circle([44.00, -120.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle8 = L.circle([44.00, -120.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle8.key = "OR";
     
-    var circle9 = L.circle([43.00, -75.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle9 = L.circle([43.00, -75.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle9.key = "NY";
     
-    var circle10 = L.circle([44.00, -71.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle10 = L.circle([44.00, -71.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle10.marker = "NH";
     
-    var circle11 = L.circle([41.50, -100.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle11 = L.circle([41.50, -100.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle11.key = "NE";
     
-    var circle12 = L.circle([38.50, -98.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle12 = L.circle([38.50, -98.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle12.key = "KS";
     
-    var circle13 = L.circle([33.00, -90.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle13 = L.circle([33.00, -90.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle13.key = "MS";
     
-    var circle14 = L.circle([40.00, -89.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle14 = L.circle([40.00, -89.00], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle14.key = "IL";
     
-    var circle15 = L.circle([39.00, -75.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle15 = L.circle([39.00, -75.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle15.key = "DE";
     
-    var circle16 = L.circle([41.59, -72.69], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle16 = L.circle([41.59, -72.69], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle16.key = "CT";
     
-    var circle17 = L.circle([34.79, -92.19], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle17 = L.circle([34.79, -92.19], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle17.key = "AR";
     
-    var circle18 = L.circle([40.27, -86.12], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle18 = L.circle([40.27, -86.12], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle18.key = "IN";
     
-    var circle19 = L.circle([38.57, -92.60], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle19 = L.circle([38.57, -92.60], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle19.key = "MO";
     
-    var circle20 = L.circle([27.99, -81.76], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle20 = L.circle([27.99, -81.76], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle20.key = "FL";
     
-    var circle21 = L.circle([39.87, -117.22], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle21 = L.circle([39.87, -117.22], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle21.key = "NV";
     
-    var circle22 = L.circle([45.36, -68.97], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle22 = L.circle([45.36, -68.97], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle22.key = "ME";
     
-    var circle23 = L.circle([44.18, -84.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle23 = L.circle([44.18, -84.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle23.key = "MI";
     
-    var circle24 = L.circle([33.24, -83.44], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle24 = L.circle([33.24, -83.44], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle24.key = "GA";
     
-    var circle23 = L.circle([44.18, -84.50], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
-    circle23.key = "MI";
-    
-    var circle24 = L.circle([33.24, -83.44], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
-    circle24.key = "GA";
-    
-    var circle25 = L.circle([19.74, -155.84], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle25 = L.circle([19.74, -155.84], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle25.key = "HI";
     
-    var circle26 = L.circle([66.16, -153.36], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle26 = L.circle([66.16, -153.36], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle26.key = "AK";
     
-    var circle25 = L.circle([19.74, -155.84], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
-    circle25.key = "HI";
-    
-    var circle26 = L.circle([66.16, -153.36], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
-    circle26.key = "AK";
-    
-    var circle27 = L.circle([35.86, -86.66], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle27 = L.circle([35.86, -86.66], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle27.key = "TN";
     
-    var circle28 = L.circle([37.92, -78.02], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle28 = L.circle([37.92, -78.02], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle28.key = "VA";
     
-    var circle29 = L.circle([39.83, -74.87], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle29 = L.circle([39.83, -74.87], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle29.key = "NJ";
     
-    var circle30 = L.circle([37.83, -84.27], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle30 = L.circle([37.83, -84.27], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle30.key = "KY";
     
-    var circle31 = L.circle([47.65, -100.43], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle31 = L.circle([47.65, -100.43], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle31.key = "ND";
     
-    var circle32 = L.circle([46.39, -94.63], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle32 = L.circle([46.39, -94.63], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle32.key = "MN";
     
-    var circle33 = L.circle([36.08, -96.92], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle33 = L.circle([36.08, -96.92], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle33.key = "OK";
     
-    var circle34 = L.circle([46.96, -109.53], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle34 = L.circle([46.96, -109.53], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle34.key = "MT";
     
-    var circle35 = L.circle([47.75, -120.74], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle35 = L.circle([47.75, -120.74], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle35.key = "WA";
     
-    var circle36 = L.circle([39.41, -111.95], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle36 = L.circle([39.41, -111.95], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle36.key = "UT";
     
-    var circle37 = L.circle([39.11, -105.35], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle37 = L.circle([39.11, -105.35], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle37.key = "CO";
     
-    var circle38 = L.circle([40.36, -82.99], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle38 = L.circle([40.36, -82.99], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle38.key = "OH";
     
-    var circle39 = L.circle([32.31, -86.90], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle39 = L.circle([32.31, -86.90], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle39.key = "AL";
     
-    var circle40 = L.circle([42.03, -93.58], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle40 = L.circle([42.03, -93.58], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle40.key = "IA";
     
-    var circle41 = L.circle([34.30, -106.01], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle41 = L.circle([34.30, -106.01], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle41.key = "NM";
     
-    var circle42 = L.circle([33.83, -81.16], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle42 = L.circle([33.83, -81.16], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle42.key = "SC";
     
-    var circle43 = L.circle([41.20, -77.19], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle43 = L.circle([41.20, -77.19], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle43.key = "PA";
     
-    var circle44 = L.circle([34.04, -111.09], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle44 = L.circle([34.04, -111.09], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle44.key = "AZ";
     
-    var circle45 = L.circle([39.04, -76.64], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle45 = L.circle([39.04, -76.64], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle45.key = "MD";
     
-    var circle46 = L.circle([42.40, -71.38], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle46 = L.circle([42.40, -71.38], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle46.key = "MA";
     
-    var circle47 = L.circle([36.77, -119.41], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle47 = L.circle([36.77, -119.41], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle47.key = "CA";
     
-    var circle48 = L.circle([44.06, -114.74], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle48 = L.circle([44.06, -114.74], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle48.key = "ID";
     
-    var circle49 = L.circle([43.07, -107.29], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle49 = L.circle([43.07, -107.29], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle49.key = "WY";
     
-    var circle50 = L.circle([35.78, -80.79], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle50 = L.circle([35.78, -80.79], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle50.key = "NC";
     
-    var circle51 = L.circle([30.39, -92.32], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.1, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
+    var circle51 = L.circle([30.39, -92.32], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle51.key = "LA";
 });
 
@@ -360,8 +377,8 @@ function chartPrep(response, stateParam) {
         }
     });
 
-    console.log(datesArr);
-    console.log(countsArr);
+    // console.log(datesArr);
+    // console.log(countsArr);
 
     renderStateChart(stateParam);
 }
@@ -480,7 +497,7 @@ function getStateInfo(st) {
     
         // console.log('======= Filtered Stats =============')
         console.log(finalStats[st]);
-        console.log(st)
+        // console.log(st)
         chartPrep(finalStats[st], st);
     })
     }
@@ -493,7 +510,7 @@ function onClick() {
     // get US News
     getHealthNews("us");
     // Get State Info for Chart
-    console.log(state);
+    // console.log(state);
     getStateInfo(state);
     $('#progress').html('<progress class="progress is-large is-info" max="100">25%</progress>');
 }
