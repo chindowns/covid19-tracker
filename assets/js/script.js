@@ -22,7 +22,63 @@ var marker8;
 var marker9;
 var marker10;
 
-// LOAD MAP MARKERS before making an API Call
+// Get the Summary data for all Countries directly from Covid19api
+var queryURL = "https://api.covid19api.com/summary";
+
+// Using FETCH instead of AJAX
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+// })
+fetch(queryURL)
+.then(function (response) {
+    // Pass the information outside of the AJAX Response Function to allow the data to be processed
+    processGlobalData(response);
+    
+    // .then(data => {
+    //     const request = window.indexedDB.open("covidCountries", 1);
+
+    //     // Create schema
+    //     request.onupgradeneeded = event => {
+    //         const db = event.target.result;
+
+    //         // Creates an object store with a listID keypath that can be used to query on.
+    //         const covideStore = db.createObjectStore("covidCountries", { keyPath: "listID" });
+    //         // Creates a statusIndex that we can query on.
+    //         toDoListStore.createIndex("statusIndex", "status");
+    //     }
+
+    //     // Opens a transaction, accesses the toDoList objectStore and statusIndex.
+    //     request.onsuccess = () => {
+    //         const db = request.result;
+    //         const transaction = db.transaction(["toDoList"], "readwrite");
+    //         const toDoListStore = transaction.objectStore("toDoList");
+    //         const statusIndex = toDoListStore.index("statusIndex");
+
+    //         // Adds data to our objectStore
+    //         toDoListStore.add({ listID: "1", status: "complete" });
+    //         toDoListStore.add({ listID: "2", status: "in-progress" });
+    //         toDoListStore.add({ listID: "3", status: "complete" });
+    //         toDoListStore.add({ listID: "4", status: "backlog" });
+
+    //         // Return an item by keyPath
+    //         const getRequest = toDoListStore.get("1");
+    //         getRequest.onsuccess = () => {
+    //             console.log(getRequest.result);
+    //         };
+
+
+    //         // Return an item by index
+    //         const getRequestIdx = statusIndex.getAll("complete");
+
+    //         getRequestIdx.onsuccess = () => {
+    //             console.log(getRequestIdx.result);
+    //         }; 
+    // })
+    // console.log(`==== Summary Data ==== `);
+    // console.log(JSON.parse(response));
+
+// LOAD MAP MARKERS after making an API Call
 const redIcon = new L.Icon({
     iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -164,23 +220,7 @@ var circle50 = L.circle([35.78, -80.79], {color: 'red', fillColor:'#ffcc99', fil
     circle50.key = "NC";
 var circle51 = L.circle([30.39, -92.32], {color: 'red', fillColor:'#ffcc99', fillOpacity: 0.8, weight: 2, radius: 100000}).addTo(map).on('click', onClick);
     circle51.key = "LA";
-
-// Move getting API data from load to call when needed by placing it in a function
-
-// Get the Summary data for all Countries directly from Covid19api
-// var queryURL = "https://api.covid19api.com/summary";
-
-// Get the Summary data for all Countries from the app API
-const queryURL = "/api/countries"
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    // Pass the information outside of the AJAX Response Function to allow the data to be processed
-    processGlobalData(response);
-    // console.log(`==== Summary Data ==== `);
-    // console.log(JSON.parse(response));
-})
+});
 
 function addComma(num) {
     return (num.toString().split("").reverse()
@@ -215,12 +255,12 @@ function processGlobalData(response) {
 
 function countryClick() {
     let country = (this.key);
-    console.log(this.key);
+    // console.log(this.key);
     getHealthNews(country);
     console.log(countries);
 
     let countryData = countries[country];
-    console.log(countryData);
+    // console.log(countryData);
 
     let totalConfirmed = addComma(countryData.obj.TotalConfirmed);
     let newConfirmed = addComma(countryData.obj.NewConfirmed);
@@ -442,34 +482,51 @@ function onClick() {
 
 // News API Query
 function getHealthNews(location) {
-    var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
+    var queryURL = `"http://newsapi.org/v2/top-headlines?country=${location}"`;
 
-    $.ajax({
-        url: "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
-        method: "GET"
-    }).then(function (response) {
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // })
 
-        // Clears News DIV when a country query responds
-        $("#news-box").empty();
-        var articles = response.articles
+    var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "8ca0b59b73c84ee996ce37c7f99dff97");
+    myHeaders.append("Cookie", "__cfduid=d05eb7fbb4031fe3378ba696aca7f90411594247686");
 
-        // clear news
-        var news = [];
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
 
-        // Sets the news list objects to 10 articles in an array
-        for (var i = 0; i < 10; i++) {
-            var headlines = {
-                headline: articles[i].title,
-                link: articles[i].url,
-                author: articles[i].author,
-                pubSource: articles[i].source.name,
-                pubDate: articles[i].publishedAt
-            };
-            news.push(headlines);
-        }
-        // console.log(news);
-        renderNews(news);
-    });
+    fetch(queryURL, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result)
+            
+            // Clears News DIV when a country query responds
+            $("#news-box").empty();
+            var articles = result.articles
+
+            // clear news
+            var news = [];
+
+            // Sets the news list objects to 10 articles in an array
+            for (var i = 0; i < 10; i++) {
+                var headlines = {
+                    headline: articles[i].title,
+                    link: articles[i].url,
+                    author: articles[i].author,
+                    pubSource: articles[i].source.name,
+                    pubDate: articles[i].publishedAt
+                };
+                news.push(headlines);
+            }
+            // console.log(news);
+            renderNews(news);
+        })
+        .catch(error => console.log('error', error))
+
 }
 
 function renderNews(news) {
