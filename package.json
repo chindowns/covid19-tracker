@@ -1,8 +1,8 @@
 {
   "name": "covid19-tracker",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "Track new daily covid-19 cases by state and overall stats for countries.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,8 +11,11 @@
     "url": "git+https://github.com/chindowns/covid19-tracker.git"
   },
   "keywords": [
-    "mongo",
-    "mongoose",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "jQuery",
+    "RESTful API's",
     "full-stack"
   ],
   "author": "Michael Downs & Brad Davis",
@@ -20,11 +23,10 @@
   "bugs": {
     "url": "https://github.com/chindowns/covid19-tracker/issues"
   },
-  "homepage": "https://github.com/chindowns/covid19-tracker#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.17",
+    "mongoose": "^5.9.22",
     "path": "^0.12.7"
   }
 }
