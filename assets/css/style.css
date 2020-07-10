@@ -74,13 +74,14 @@ justify-content: center !important;
 }
 
 #myChart {
-  width: 95%;
+  width: 100%;
+  height: 600px;
   position: absolute;
-  left: 36px;
+  left: 20px;
   top: 195px;
   z-index:1;
   background: #FFF;
-  opacity: .9;
+  opacity: .7;
   display: none;
 }
 
