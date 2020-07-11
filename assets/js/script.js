@@ -175,7 +175,7 @@ function loadCountryMarkers() {
           circle31.key = "ND";
     const circle32 = L.marker([46.39, -94.63], {icon: redIcon}).addTo(map).on('click', onClick);
           circle32.key = "MN";
-    const circle33 = L.marker([36.08, -96.92], {icon: redIcon}).addTo(map).on('click', onClick);
+    const circle33 = L.marker([35.08, -96.92], {icon: redIcon}).addTo(map).on('click', onClick);
           circle33.key = "OK";
     const circle34 = L.marker([46.96, -109.53], {icon: redIcon}).addTo(map).on('click', onClick);
           circle34.key = "MT";
@@ -353,7 +353,6 @@ function renderStateChart(stateLabel, datesArr, countsArr) {
     // renders the chart onto the DOM
     var ctx = document.getElementById('myChart');
     $('#map').attr("style", "opacity: 0.5; ");
-    $('#progress').attr("style", "display:none;");
     ctx.setAttribute("style", "display:flex;");
 
     var labelsArr = datesArr;
@@ -414,39 +413,6 @@ function setconfirmedStats(statesApiData){
     loadStateMarkers();
 }
 
-// function getStateInfo(st) {
-    
-//     for (i = 0; i < statesApiData.length; i++) {
-//         let dateResp = statesApiData[i].Date;
-//         let casesResp = statesApiData[i].Cases;
-//         let provinceResp = statesApiData[i].Province;
-//         // console.log(`Province Response is: ${provinceResp}`);
-//         state = lookUp[provinceResp]; // LOOKS UP the 2 digit state code when full state is passed in the data.
-//         // console.log(`State is: ${state}`)
-
-//         // This is the process that pushes the data into an object array that passes to chartPrep
-//         if (confirmedStats[state]) {
-//             var confirmedObj = {
-//                 date: dateResp.slice(0,10),
-//                 confCases: casesResp
-//             };
-//             // console.log("object of array state " + JSON.stringify(confirmed));
-//             confirmedStats[state].push(confirmedObj);
-
-//             //push new obj (date and count)
-//         } else if (dateResp !== undefined && state !== undefined && state !== "") {
-//             confirmedStats[state] = [confirmedObj];
-//         }
-//     }
-    
-//         // console.log('======= Filtered Stats =============')
-//         // console.log(confirmedStats[st]);
-//         // console.log(st)
-//         // chartPrep(confirmedStats[st], st);
-//     // })
-//     // }
-//     chartPrep(confirmedStats[st], st)
-// }
 
 // Responds to clicks on US State markers
 function onClick() {

@@ -5,7 +5,7 @@
 }
 
 header {
-  background: rgba(27, 121, 216, 0.801);
+  background: rgba(6, 30, 54, 0.801);
 }
 
 #center-head {
@@ -63,7 +63,7 @@ justify-content: center !important;
 
 #map { 
   width:95%; 
-  height:600px;
+  height:500px;
   margin: 18px 0px 24px 24px;
   padding: 0 10px 0 0;
 
@@ -75,23 +75,11 @@ justify-content: center !important;
 
 #myChart {
   width: 100%;
-  height: 600px;
   position: absolute;
-  left: 20px;
-  top: 195px;
+  margin:10px 30px;
+  max-height: 600px;
   z-index:1;
   background: #FFF;
   opacity: .7;
   display: none;
-}
-
-#progress {
-  width: 33%;
-  position: absolute;
-  left: 150px;
-  top: 500px;
-  z-index:500;
-  background: #FFF;
-  opacity: .9;
-  /* display: none; */
 }
