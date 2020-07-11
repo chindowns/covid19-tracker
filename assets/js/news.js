@@ -1,8 +1,7 @@
 function getHealthNews(location) {
-    var healthQuery = "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01"
 
     $.ajax({
-        url: "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
+        url: "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=8ca0b59b73c84ee996ce37c7f99dff97",
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "https://chindowns.github.io",
