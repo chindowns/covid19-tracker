@@ -5,7 +5,7 @@ function getHealthNews(location) {
         url: "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=fee4776affce4f0fa44e7bca791fbb01",
         method: "GET",
         headers: {
-            "Access-Control-Allow-Origin": "https://newsapi.org",
+            "Access-Control-Allow-Origin": "https://chindowns.github.io",
             "Cookie": "__cfduid=df89ecbf3b90f7d841bd20cdc251bb6411594500138"
           },
     }).then(function (response) {
