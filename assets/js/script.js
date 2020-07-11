@@ -36,23 +36,25 @@ let requestOptions = {
     redirect: 'follow'
 }
 
-// fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed", requestOptions)
-//     .then(response => response.json())
-//     .then(result => setconfirmedStats(result))
-//     .catch(error => console.log("Failed to get State data: ", error));
-var statesInfo = [];
-$.getJSON("USstateResponse.json", function(json) {
-    statesInfo = json;
-    console.log(json);
-    setconfirmedStats(statesInfo);
-})
+fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed", requestOptions)
+    .then(response => response.json())
+    .then(result => setconfirmedStats(result))
+    .catch(error => console.log("Failed to get State data: ", error));
+// TESTING DATA
+// var statesInfo = [];
+// $.getJSON("USstateResponse.json", function(json) {
+//     statesInfo = json;
+//     console.log(json);
+//     setconfirmedStats(statesInfo);
+// })
 
-// fetch("https://api.covid19api.com/summary", requestOptions)
-//     .then(response => response.json())
-//     .then(result => processGlobalData(result))
-//     .catch(error => console.log("Failed to get summary data: ", error));
+fetch("https://api.covid19api.com/summary", requestOptions)
+    .then(response => response.json())
+    .then(result => processGlobalData(result))
+    .catch(error => console.log("Failed to get summary data: ", error));
 
-$.getJSON("globalResponse.json", json => processGlobalData(json))
+// TESTING DATA
+// $.getJSON("globalResponse.json", json => processGlobalData(json))
 
 function loadCountryMarkers() {
     // LOAD MAP MARKERS after Summary Data is received
@@ -267,10 +269,10 @@ function countryClick() {
     let totalDeaths = addComma(countryData.TotalDeaths);
 
     let popUpStats = `${countryData.Country}<br/>
-    Total Confirmed:  ${totalConfirmed}<br/>
-    New Confirmed:  ${newConfirmed}<br/>
-    Total Recovered:  ${totalRecovered}<br/>
-    Total Deaths:  ${totalDeaths} `
+    Total Confirmed: &nbsp ${totalConfirmed}<br/>
+    New Confirmed: &nbsp ${newConfirmed}<br/>
+    Total Recovered: &nbsp ${totalRecovered}<br/>
+    Total Deaths: &nbsp ${totalDeaths} `
 
     marker1.bindPopup(popUpStats);
     marker2.bindPopup(popUpStats);
@@ -290,9 +292,9 @@ function countryClick() {
 
 function renderGlobalStats(conf, newConf, deaths) {
     $('#global-stats').html(
-        `Global Confirmed Cases:  ${conf} <br/>
-        Global New Cases:  ${newConf} <br/>
-        Global Deaths:  ${deaths}`);
+       `Global Confirmed Cases: &nbsp ${conf} <br/>
+        Global New Cases: &nbsp ${newConf} <br/>
+        Global Deaths: &nbsp ${deaths}`);
 }
 
 function chartPrep(state) {
