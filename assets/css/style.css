@@ -23,7 +23,7 @@ justify-content: center !important;
 
 #how-to-use {
   font-size: 12px;
-  font-weight: lighter;
+  font-weight: 500;
   font-style: italic;
 }
 
@@ -43,11 +43,22 @@ justify-content: center !important;
 
 #news-box {
   margin: 25px 0 0 0;
-  height: 600px; 
+  height: 525px; 
   /* text-align: left; */
   padding-right: 5px;
   padding-left: 5px;
   overflow-y: auto;
+}
+
+.card-content {
+  padding: 0px;
+  margin: 0px;
+}
+.content {
+  font-size: small;
+  font-weight: 300;
+  font-style: italic ;
+  padding: 0 auto;
 }
 
 #map-header {

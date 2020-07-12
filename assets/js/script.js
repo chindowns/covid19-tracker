@@ -25,27 +25,27 @@ let requestOptions = {
 }
 
 // Get daily stats by state for the trending chart
-fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed", requestOptions)
-    .then(response => response.json())
-    .then(result => setconfirmedStats(result))
-    .catch(error => console.log("Failed to get State data: ", error));
+// fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed", requestOptions)
+//     .then(response => response.json())
+//     .then(result => setconfirmedStats(result))
+//     .catch(error => console.log("Failed to get State data: ", error));
 
 // TESTING DATA
-// var statesInfo = [];
-// $.getJSON("USstateResponse.json", function(json) {
-//     statesInfo = json;
-//     console.log(json);
-//     setconfirmedStats(statesInfo);
-// })
+var statesInfo = [];
+$.getJSON("USstateResponse.json", function(json) {
+    statesInfo = json;
+    console.log(json);
+    setconfirmedStats(statesInfo);
+})
 
 // Get Summary Data for all Countries
-fetch("https://api.covid19api.com/summary", requestOptions)
-    .then(response => response.json())
-    .then(result => processGlobalData(result))
-    .catch(error => console.log("Failed to get summary data: ", error));
+// fetch("https://api.covid19api.com/summary", requestOptions)
+//     .then(response => response.json())
+//     .then(result => processGlobalData(result))
+//     .catch(error => console.log("Failed to get summary data: ", error));
 
 // TESTING DATA
-// $.getJSON("globalResponse.json", json => processGlobalData(json))
+$.getJSON("globalResponse.json", json => processGlobalData(json))
 
 
 var addComma = function(num) {
@@ -60,7 +60,7 @@ var addComma = function(num) {
 // Process GlobalData for header and set countries OBJ for future clicks
 function processGlobalData(result) {
     let globalData = result.Global;
-    console.log(globalData);
+    // console.log(globalData);
 
     let newConfirmed = addComma(globalData.NewConfirmed);
     let totalConfirmed = addComma(globalData.TotalConfirmed);
