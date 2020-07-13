@@ -34,7 +34,7 @@ fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed"
 var statesInfo = [];
 $.getJSON("USstateResponse.json", function(json) {
     statesInfo = json;
-    console.log(json);
+    // console.log(json);
     setconfirmedStats(statesInfo);
 })
 
@@ -74,9 +74,10 @@ function processGlobalData(result) {
 
 // Sets the variable countries for the country marker clicks
 function setCountriesData(Countries) {
+    console.log(Countries);
     Countries.forEach(obj => {
-        let countrycode = obj.CountryCode.toLowerCase();
-        countries[countrycode]={obj};
+        let countryID = obj.Slug;
+        countries[countryID]={obj};
     });
 
     // Loads country markers
