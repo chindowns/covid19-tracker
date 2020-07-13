@@ -1,6 +1,6 @@
 // Renders the map on the page
 const accessToken = 'pk.eyJ1IjoianVsaWV0LWdlb3JnZSIsImEiOiJjazhnOXNzN3gwMXoyM2RxbjNzbXdrYXJjIn0.a653svYKdCmg2wkjY5HxVg';
-var map = L.map('map').setView([40, -100], 4);
+var map = L.map('map').setView([30, -40], 3);
 
 // Add tiles from the Mapbox Static Tiles API
 // Tiles are 512x512 pixels and are offset by 1 zoom level

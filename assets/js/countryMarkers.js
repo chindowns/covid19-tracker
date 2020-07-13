@@ -31,7 +31,7 @@ function loadCountryMarkers() {
         marker10.key = "Belgium";
     marker11 = L.marker([-25.2744, 133.7751], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Australia
         marker11.key = "Australia"
-    marker12 = L.marker([-15.8267, -47.9218], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Brazil
+    marker12 = L.marker([-13.8267, -47.9218], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Brazil
         marker12.key = "Brazil"
     marker13 = L.marker([40.4637, -3.7492], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Spain
         marker13.key = "Spain"
