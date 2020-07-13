@@ -12,12 +12,9 @@ header {
 justify-content: center !important;
 }
 
-#global-stats {
-  
-}
-
 .hero-body {
   padding: 12px;
+  display: flex;
 }
 
 .image {
