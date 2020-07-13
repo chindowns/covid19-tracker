@@ -1,69 +1,39 @@
 function getHealthNews(location) {
+    var myHeaders = new Headers();
+    myHeaders.append("Ocp-Apim-Subscription-Key", "c2decef408fc448890304329c262609e");
 
-    fetch(`https://google-news.p.rapidapi.com/v1/topic_headlines?country=${location}&lang=en&topic=health`, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "google-news.p.rapidapi.com",
-            "x-rapidapi-key": "e0fb17d10fmsh6564ffe40545be1p170617jsn4f815da207ed"
-        }
-    })
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=" + location + "+Coronavirus&count=10&offset=0&mkt=en-us&safeSearch=Moderate", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            console.log(result)
             $("#news-box").empty();
-            const articles = result.articles
+            const articles = result.value
 
             // clear news
             const news = [];
+
             // Sets the news list objects to 10 articles in an array
             for (var i = 0; i < 10; i++) {
                 var headlines = {
-                    headline: articles[i].title,
-                    link: articles[i].link,
-                    author: articles[i].source.title,
-                    pubSource: articles[i].source.href,
-                    pubDate: articles[i].published
+                    headline: articles[i].name,
+                    link: articles[i].url,
+                    description: articles[i].description,
+                    author: articles[i].provider[0].name,
+                    pubDate: articles[i].datePublished.slice(0, 10)
                 };
                 news.push(headlines);
             }
+
             // console.log(news);
             renderNews(news);
         })
-        .catch(err => {
-            console.log(err);
-        });
-
-
-    // $.ajax({
-    //     url: "https://newsapi.org/v2/top-headlines?country=" + location + "&category=health&apiKey=8ca0b59b73c84ee996ce37c7f99dff97",
-    //     method: "GET",
-    //     headers: {
-    //         "Access-Control-Allow-Origin": "https://chindowns.github.io",
-    //         "Cookie": "__cfduid=df89ecbf3b90f7d841bd20cdc251bb6411594500138"
-    //       },
-    // }).then(function (response) {
-
-    //     // Clears News DIV when a country query responds
-    //     $("#news-box").empty();
-    //     var articles = response.articles
-
-    //     // clear news
-    //     var news = [];
-
-    //     // Sets the news list objects to 10 articles in an array
-    //     for (var i = 0; i < 10; i++) {
-    //         var headlines = {
-    //             headline: articles[i].title,
-    //             link: articles[i].url,
-    //             author: articles[i].author,
-    //             pubSource: articles[i].source.name,
-    //             pubDate: articles[i].publishedAt
-    //         };
-    //         news.push(headlines);
-    //     }
-    //     // console.log(news);
-    //     renderNews(news);
-    // });
+        .catch(error => console.log('error', error));
 }
 
 function renderNews(news) {
@@ -80,11 +50,10 @@ function renderNews(news) {
         $('#card-header' + [i]).html('<p class="card-header-title"><a href="' + news[i].link + '" target="blank">' + news[i].headline + '</a></p>');
 
         // Article source and Pub Date
-        $('#content' + [i]).html('<p>Source: ' + news[i].pubSource + '<br/>Pub Date: ' + news[i].pubDate + '</p>');
+        $('#content' + [i]).append(news[i].author ?
+            `${news[i].description}<br />Pub Date: ${news[i].pubDate} &nbsp &nbsp  | &nbsp &nbsp  ${news[i].author}` :
+            `Pub Date: ${news[i].pubDate}`);
 
-        // If Author exists append
-        if (news[i].author !== null) {
-            $('#content' + [i]).append('Author: ' + news[i].author);
-        }
     }
 }
+

@@ -44,21 +44,33 @@ justify-content: center !important;
 #news-box {
   margin: 25px 0 0 0;
   height: 525px; 
-  /* text-align: left; */
+  text-align: left;
   padding-right: 5px;
   padding-left: 5px;
   overflow-y: auto;
 }
 
+p.card-header-title {
+  font-size: small;
+  font-weight: bold;
+  padding: 5px;
+  font-family: 'Open Sans Condensed', sans-serif;
+
+}
+
 .card-content {
   padding: 0px;
   margin: 0px;
+  font-family: 'Open Sans Condensed', sans-serif;
+
 }
 .content {
-  font-size: small;
+  font-size: smaller;
   font-weight: 300;
   font-style: italic ;
-  padding: 0 auto;
+  padding: 0 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+
 }
 
 #map-header {
