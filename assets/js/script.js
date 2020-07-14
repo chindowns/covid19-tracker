@@ -176,4 +176,4 @@ function onClick() {
     chartPrep(state);
 }
 
-getHealthNews("us");
+getHealthNews("united-states");
