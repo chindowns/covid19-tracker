@@ -10,7 +10,7 @@ function loadCountryMarkers() {
     });
 
     marker1 = L.marker([39.0119, -98.4842], { icon: orangeIcon }).addTo(map).on('click', countryClick); // US
-        marker1.key = "US";
+        marker1.key = "united-states";
     marker2 = L.marker([41.9028, 12.4964], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Italy
         marker2.key = "italy";
     marker3 = L.marker([52.1326, 5.2913], { icon: orangeIcon }).addTo(map).on('click', countryClick); // Netherland
