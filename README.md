@@ -1,7 +1,7 @@
 # Covid-19 Tracker
 https://chindowns.github.io/covid19-tracker
 
-In January 2020, the World Health Organizatin declared the Covid-19 Virus (aka Coronavirus) represents a public health emergency of international concern. On January 31, the U.S. Department of Health and Human Services declared the virus to be a health emergency for the United States.  The first recorded case in the United States was on January 22, 2020.
+In January 2020, the World Health Organization declared the Covid-19 Virus (aka Coronavirus) represents a public health emergency of international concern. On January 31, the U.S. Department of Health and Human Services declared the virus to be a health emergency for the United States.  The first recorded case in the United States was on January 22, 2020.
 
 This application, Covid-19 Tracker is a web application that enables the user to see what is happening around the world regarding the Covid-19 Pandemic on one screen.  The application enables the user to select one of the top 10 hotspots around the World and see live updates of how many cases have been Confirmed, Recovered, and Deaths associated to Covid-19 in that country.  Along side the map, the news will display the latest headline news regarding health news in that country.
 
