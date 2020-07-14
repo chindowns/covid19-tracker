@@ -31,12 +31,12 @@ fetch("https://api.covid19api.com/dayone/country/united-states/status/confirmed"
     .catch(error => console.log("Failed to get State data: ", error));
 
 // TESTING DATA
-var statesInfo = [];
-$.getJSON("USstateResponse.json", function(json) {
-    statesInfo = json;
-    // console.log(json);
-    setconfirmedStats(statesInfo);
-})
+// var statesInfo = [];
+// $.getJSON("USstateResponse.json", function(json) {
+//     statesInfo = json;
+//     console.log(json);
+//     setconfirmedStats(statesInfo);
+// })
 
 // Get Summary Data for all Countries
 fetch("https://api.covid19api.com/summary", requestOptions)
