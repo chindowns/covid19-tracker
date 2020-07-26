@@ -1,6 +1,6 @@
 function getHealthNews(location) {
     var myHeaders = new Headers();
-    myHeaders.append("Ocp-Apim-Subscription-Key", "c2decef408fc448890304329c262609e");
+    myHeaders.append("Ocp-Apim-Subscription-Key", "c2decef408fc448890304329c262609e");  // AZURE API Management
 
     var requestOptions = {
         method: 'GET',
@@ -8,7 +8,10 @@ function getHealthNews(location) {
         redirect: 'follow'
     };
 
-    fetch("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=" + location + "+Coronavirus&count=10&offset=0&mkt=en-us&safeSearch=Moderate", requestOptions)
+    var urlFree = "https://chindownssearch.cognitiveservices.azure.com/bing/v7.0/news/search?q="
+    var urlFee = "https://api.cognitive.microsoft.com/bing/v7.0/news/search?q="
+
+    fetch(urlFree + location + "+Coronavirus&count=10&offset=0&mkt=en-us&safeSearch=Moderate", requestOptions)
         .then(response => response.json())
         .then(result => {
             console.log(result)
